@@ -1,0 +1,201 @@
+@use './variables.scss' as vars;
+*{
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: #F4F5FA;
+  position: relative;
+}
+
+a{
+  color: unset;
+  text-decoration: none;
+}
+
+button{
+  all:unset;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: .3s;
+  border: 1px solid;
+}
+
+// TYPOGRAPHY
+
+h1, h2, h3, h4, h5, h6, p, li, span, a, th, button,input, td, select, label, div{
+  font-family: "Noto Sans", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+  color: vars.$title-color-1;
+}
+
+h5{
+  font-size: 16px;
+  font-weight: 500;
+}
+
+label{
+  color: vars.$title-color-1;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+p,li, a{
+  font-size: 16px;
+  color: vars.$body-color;
+}
+
+
+// END TYPOGRAPHY
+
+
+.container-standar{
+  max-width: 1300px;
+  padding: 50px 20px;
+  margin: auto;
+}
+
+
+.button{
+  transition: 0.3s;
+  border: 0px;
+  outline: unset;
+  border-radius: 8px;
+  padding: 6px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &:hover{
+    transform: scale(1.08);
+  }
+}
+
+.primary-button{
+  background-color: vars.$color-1;
+  color: #273D6E;
+  font-weight: 600;
+}
+
+.primary-button:hover, .primary-button:focus{
+  background-color: #273D6E;;
+  color: vars.$color-1;
+}
+
+.secondary-button{
+  background-color: vars.$color-2;
+  border-color: vars.$color-2;
+  color: white;
+  font-weight: 600;
+}
+
+.secondary-button:hover, .secondary-button:focus{
+  background-color: transparent;
+  border-color: vars.$color-2;
+  color: vars.$color-2;
+  font-weight: 700;
+}
+
+.simple-button{
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.simple-button.delete{
+  color: #ff6b6b;
+}
+
+.simple-button.edit{
+  color: #4280f3;
+}
+
+.cancel-button{
+  background-color: vars.$color-3;
+  color: white;
+}
+
+
+
+.filter-button{
+  color: vars.$title-color-1;
+  border: 1.5px solid vars.$subtitle-color-1;
+  cursor: pointer;
+  padding: 4px 8px;
+  font-size:13px;
+  border-radius:20px;
+  transition:.3s;
+  font-weight:500;
+  &:hover{
+    background-color: white;
+    transform: scale(1.08);
+  }
+}
+
+.filter-button.active{
+  background-color: black;
+  color: white;
+  svg path{
+    fill: white;
+    stroke: white;
+  }
+}
+
+
+
+input,textarea{
+  outline: none;
+  border-radius: 8px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid vars.$color-1;
+  background-color: transparent;
+  color: vars.$title-color-1;
+  height: 40px;
+  padding: 10px;
+  &:focus{
+    box-shadow: 0 0 0 .25rem rgba(79, 117, 255, 0.25) ;
+  }
+  &::placeholder{
+    color: vars.$subtitle-color-1;
+  }
+}
+
+select{
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid vars.$color-1;
+  background-color: transparent;
+  color: vars.$title-color-1;
+  height: 40px;
+  padding: 10px;
+  margin-bottom:20px;
+  &:focus{
+    box-shadow: 0 0 0 .25rem rgba(79, 117, 255, 0.25) ;
+  }
+  &::placeholder{
+    color: vars.$subtitle-color-1;
+  }
+}
+
+
+
+
+.date-input-1 {
+  /*background-image: url('../src/assets/images/date-icon.png');*/
+  background-repeat: no-repeat;
+  background-position: 10px center; // gives some left spacing
+  padding-left: 36px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  &::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+  }
+}

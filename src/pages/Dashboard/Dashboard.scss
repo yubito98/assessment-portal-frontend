@@ -1,0 +1,10 @@
+.dashboard{
+    max-width: 1250px;
+    padding: 20px;
+    margin: auto;
+    .top{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+}

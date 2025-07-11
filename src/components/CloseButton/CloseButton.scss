@@ -1,0 +1,18 @@
+@use "../../variables.scss" as vars;
+
+
+.close-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: vars.$color-2;
+    height: 30px;
+    width: 30px;
+    font-weight: 700;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
+    color: white;
+    border-radius: 8px;
+}

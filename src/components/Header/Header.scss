@@ -1,0 +1,96 @@
+@use "../../variables.scss" as vars;
+
+header{
+    width: 100%;
+    background-color: vars.$color-1;
+    .container{
+        max-width: 1250px;
+        margin: auto;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        .logo h3{
+            color: white;
+            margin-bottom: 0px;
+        }
+        .nav{
+            display: flex;
+            justify-content: flex-end;
+            gap:20px;
+            align-items: center;
+            .menu{
+                padding: 0;
+                list-style: none;
+                li{
+                    color: white;
+                    cursor: pointer;
+                }
+                
+            }
+        }
+    }
+}
+
+
+
+
+.header-profile{
+    position: relative;
+}
+
+.header-profile-options{
+    display: none;
+}
+
+.header-profile-avatar{
+    cursor: pointer;
+    display:flex;
+    align-items: center;
+}
+
+.header-profile-avatar img{
+    margin-right: 5px;
+}
+
+.header-profile-avatar-name{
+    color:white
+}
+
+.header-profile-active .header-profile-options{
+    display: block;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+    min-width: 200px;
+    z-index: 1;
+}
+
+.header-profile-active .header-profile-options ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header-profile-options li{
+    padding: 5px;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.header-profile-options li:hover{
+    background-color: #273D6E;
+    color: #4EE999;
+}
+
+
+
+
+
+@media(max-width:767px){
+
+}
+
