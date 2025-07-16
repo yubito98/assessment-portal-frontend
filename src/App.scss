@@ -10,7 +10,8 @@ body{
 }
 
 a{
-  color: unset;
+  font-size: 16px;
+  color: vars.$color-1;
   text-decoration: none;
 }
 
@@ -33,6 +34,10 @@ h1, h2, h3, h4, h5, h6{
   color: vars.$title-color-1;
 }
 
+h1, h2, h3, h4, h5, h6, p, a, input, select{
+  margin-bottom: 15px;
+}
+
 h5{
   font-size: 16px;
   font-weight: 500;
@@ -44,7 +49,7 @@ label{
   font-size: 14px;
 }
 
-p,li, a{
+p,li{
   font-size: 16px;
   color: vars.$body-color;
 }
@@ -198,4 +203,11 @@ select{
     display: none;
     -webkit-appearance: none;
   }
+}
+
+
+.form-error{
+  color:red;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
