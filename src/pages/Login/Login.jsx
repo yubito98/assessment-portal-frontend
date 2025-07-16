@@ -24,12 +24,18 @@ function Login() {
     }
 
     try {
-      const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/login", formData, { headers });
+      const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/login", formData, { headers, withCredentials: true });
       const data = response.data;
-      console.log(data);
       navigate("/dashboard");
     } catch (error) {
-      console.log(error.response.data.error);
+      if (error.response.data.message === "Invalid email") {
+        setError("Invalid email");
+      }else if(error.response.data.message === "Invalid password") {
+        setError("Invalid password");
+      }else{
+        setError("Something went wrong, refresh the page and try again");
+      }
+      console.log(error.response.data.message);
     }
   };
 
