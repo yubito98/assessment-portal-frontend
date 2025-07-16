@@ -5,9 +5,12 @@ import Header from "../../components/Header/Header";
 import Filters from "../../components/Filters/Filters";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const [data, setData] = useState([]);
+
+  const navigate = useNavigate()
+  const [data, setData] = useState({});
 
   const headers = {
     "Content-Type": "application/json",
@@ -17,9 +20,10 @@ function Dashboard() {
     try {
       const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates", { headers, withCredentials: true });
       const data = response.data;
+      console.log(data);
       setData(data);
     } catch (error) {
-      console.log(error);
+      navigate("/")
     }
   };
 
@@ -28,7 +32,7 @@ function Dashboard() {
   }, []);
   return (
     <>
-      <Header />
+      <Header recruiter={data.recruiter_name}/>
       <div className="dashboard">
         <div className="top">
           <Filters />

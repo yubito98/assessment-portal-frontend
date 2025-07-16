@@ -1,11 +1,11 @@
 import "./Header.scss";
-
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 import profilePlaceholder from "../../assets/images/profile-placeholder.svg";
 
-function Header() {
+function Header({ recruiter }) {
   const [profileToggle, setProfileToggle] = useState(false);
   const navigate = useNavigate();
 
@@ -13,6 +13,23 @@ function Header() {
 
   const handleProfileToggle = () => {
     setProfileToggle(!profileToggle);
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post(
+        "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      const data = response.data;
+      console.log(data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -41,12 +58,12 @@ function Header() {
           <div className={profileToggle ? "header-profile-active header-profile" : "header-profile"}>
             <div onClick={handleProfileToggle} className="header-profile-avatar">
               <img width={"30px"} height={"30px"} src={profilePlaceholder} />
-              <span className="header-profile-avatar-name">test</span>
+              <span className="header-profile-avatar-name">{recruiter}</span>
             </div>
             <div className="header-profile-options">
               <ul ref={headerProfile}>
                 <li>Profile</li>
-                <li>Log Out</li>
+                <li onClick={handleLogout}>Log Out</li>
               </ul>
             </div>
           </div>
