@@ -14,6 +14,10 @@ function SignUp() {
     event.preventDefault();
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form);
+    if (!formData.name) {
+      setError("Name is required");
+      return;
+    }
     if (!formData.email) {
       setError("Email is required");
       return;
@@ -24,11 +28,11 @@ function SignUp() {
     }
 
     try {
-      const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/users", { ...formData, role: 1 }, { headers });
+      const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/users", formData, { headers });
       const data = response.data;
       console.log(data);
-      alert("You have created a new account. Now you can Log in")
-      navigate("/")
+      alert("You have created a new account. Now you can Log in");
+      navigate("/");
     } catch (error) {
       console.log(error.response.data.error);
     }
@@ -39,8 +43,9 @@ function SignUp() {
       <div className="column">
         <form onSubmit={handleSubmit}>
           <h3>Sign up</h3>
-          <input type="email" name="email" placeholder="email" />
-          <input type="password" name="password" placeholder="password" />
+          <input type="text" name="name" placeholder="Name" />
+          <input type="email" name="email" placeholder="Email" />
+          <input type="password" name="password" placeholder="Password" />
           <p>
             Do you already have an account? Log in{" "}
             <a href="/">
