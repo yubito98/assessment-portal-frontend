@@ -1,0 +1,58 @@
+@use "../../variables.scss" as vars;
+
+.multiple-checkbox {
+  min-width: 250px;
+  max-width: 400px;
+  border: 1px solid black;
+  padding: 10px;
+  position: relative;
+
+  .selected{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .item{
+        display: inline-block;
+        border: 1px solid black;
+        border-radius: 12px;
+        padding: 5px;
+        margin-right: 5px;
+        margin-bottom: 5px;
+        background-color: #eee;
+    }
+  }
+
+  margin-bottom: 20px;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M1%200l4%204%204-4%22%20stroke%3D%22%23000%22%20stroke-width%3D%222%22%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 7px;
+  .options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: white;
+    .item {
+      padding: 10px;
+      cursor: pointer;
+      width: 100%;
+      border-bottom: 1px solid black;
+      &:hover {
+        color: white;
+        background-color: vars.$color-1;
+      }
+    }
+  }
+}
+
+.multiple-checkbox.active {
+  .options {
+    display: flex;
+  }
+}

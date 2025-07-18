@@ -32,13 +32,13 @@ function Dashboard() {
   }, []);
   return (
     <>
-      <Header recruiter={data.recruiter_name}/>
+      <Header recruiter={data.recruiter}/>
       <div className="dashboard">
         <div className="top">
           <Filters />
           <CreateCandidateButton />
         </div>
-        <CandidatesTable />
+        <CandidatesTable candidates={data.candidates} />
       </div>
     </>
   );

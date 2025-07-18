@@ -1,28 +1,41 @@
-import "./CandidatesTable.scss"
+import "./CandidatesTable.scss";
 
-
-function CandidatesTable() {
+function CandidatesTable({ candidates = [] }) {
   return (
     <div className="candidates-table">
-      <div className="header">
-        <div className="column">Name</div>
-        <div className="column">Email</div>
-        <div className="column">Assessments</div>
-        <div className="column">Progress</div>
-        <div className="column">Status</div>
-        <div className="column">Created At</div>
-      </div>
-      <div className="body">
-        <div className="row">
-          <div className="column">Yubor</div>
-          <div className="column">yubor98@gmail.com</div>
-          <div className="column assessments">
-            <span>Assessment 1</span>
-            <span>Assessment 2</span>
+      <div className="container">
+        <div className="header">
+          <div className="row">
+            <div className="column">Name</div>
+            <div className="column">Last Name</div>
+            <div className="column">Email</div>
+            <div className="column">Assessments</div>
+            <div className="column">Progress</div>
+            <div className="column">Status</div>
+            <div className="column">Score</div>
+            <div className="column">Send Date</div>
+            <div className="column">Completion Date</div>
           </div>
-          <div className="column">Progress</div>
-          <div className="column">In progress</div>
-          <div className="column">7/10/2025</div>
+        </div>
+        <div className="body">
+          {candidates.length < 1
+            ? "There are no candidates"
+            : candidates.map((item, index) => (
+                <div key={index} className="row">
+                  <div className="column">{item.name}</div>
+                  <div className="column">{item.last_name}</div>
+                  <div className="column"></div>
+                  <div className="column assessments">
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div className="column"></div>
+                  <div className="column"></div>
+                  <div className="column"></div>
+                  <div className="column"></div>
+                  <div className="column"></div>
+                </div>
+              ))}
         </div>
       </div>
     </div>
