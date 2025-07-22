@@ -60,7 +60,7 @@ function Dashboard() {
       console.log(Object.entries(obj));
       setCandidates(Object.entries(obj));
     } catch (error) {
-      //navigate("/");
+      navigate("/");
     }
   };
 

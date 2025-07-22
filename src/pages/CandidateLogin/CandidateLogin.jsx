@@ -1,9 +1,9 @@
-import "./Login.scss";
-import axios from "axios";
-import { useState } from "react";
+import './CandidateLogin.scss'
+import { useState} from "react";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+function CandidateLogin() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const headers = {
@@ -30,11 +30,9 @@ function Login() {
     } catch (error) {
       if (error.response.data.message === "Invalid email") {
         setError("Invalid email");
-      }else if(error.response.data.message === "Invalid password") {
+      } else if (error.response.data.message === "Invalid password") {
         setError("Invalid password");
-      }else if(error.response.data.message === "Recruiter not found") {
-        setError("Recruiter not found");
-      }else{
+      } else {
         setError("Something went wrong, refresh the page and try again");
       }
       console.log(error.response.data.message);
@@ -42,29 +40,21 @@ function Login() {
   };
 
   return (
-    <div className="login">
-      <div className="column">
-        <form onSubmit={handleSubmit}>
-          <h3>Login</h3>
-          <input type="email" name="email" placeholder="email" />
-          <input type="password" name="password" placeholder="password" />
-          <p>
-            Don't have an account? Sign up{" "}
-            <a href="/signup">
-              <strong>here</strong>
-            </a>
-          </p>
-          {error ? <div className="form-error">{error}</div> : ""}
-          <button type="submit" className="secondary-button">
-            Login
-          </button>
-        </form>
-      </div>
-      <div className="column rigth">
-        <h1>Assessment Portal</h1>
-      </div>
+    <div className="candidate-login">
+      <form onSubmit={handleSubmit}>
+        <h3>Canidate Login</h3>
+        <input type="email" name="email" placeholder="email" />
+        <input type="password" name="password" placeholder="password" />
+        <p>
+          Don't have an account? ask your recruiter for instructions
+        </p>
+        {error ? <div className="form-error">{error}</div> : ""}
+        <button type="submit" className="secondary-button">
+          Login
+        </button>
+      </form>
     </div>
   );
 }
 
-export default Login;
+export default CandidateLogin;
