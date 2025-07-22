@@ -42,7 +42,7 @@ function CandidateLogin() {
   return (
     <div className="candidate-login">
       <form onSubmit={handleSubmit}>
-        <h3>Canidate Login</h3>
+        <h3>Candidate Login</h3>
         <input type="email" name="email" placeholder="email" />
         <input type="password" name="password" placeholder="password" />
         <p>
