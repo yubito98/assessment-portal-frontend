@@ -7,6 +7,11 @@ import axios from "axios";
 function CreateCandidateButton() {
   const [modal, setModal] = useState(false);
   const [assessments, setAssessments] = useState([]);
+  const [normGroups, setNormGroups] = useState([]);
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
 
   const form = useRef(null);
 
@@ -14,16 +19,27 @@ function CreateCandidateButton() {
     setAssessments(options);
   };
 
+  const getNormGroups = async () => {
+    try {
+      const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/groups", { headers, withCredentials: true });
+      const data = response.data;
+      console.log(data);
+      setNormGroups(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const form = new FormData(event.target);
       const formData = Object.fromEntries(form);
-      const {name, lastName, email} = formData
-      console.log({name,lastName, email, assessments: assessments })
+      const { name, lastName, email, password, normGroup } = formData;
+      console.log({ name, lastName, email, normGroup, assessments: assessments });
       const response = await axios.post(
         "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates",
-        {name, lastName, email, assessments: assessments },
+        { name, lastName, email, password, normGroup, assessments: assessments },
         {
           withCredentials: true,
         }
@@ -36,6 +52,8 @@ function CreateCandidateButton() {
   };
 
   useEffect(() => {
+    getNormGroups();
+
     function handleClickOutside(event) {
       if (!form.current.contains(event.target)) {
         setModal(false);
@@ -66,6 +84,17 @@ function CreateCandidateButton() {
             <input type="email" name="email" placeholder="Email" />
           </div>
           <div>
+            <input type="password" name="password" placeholder="password" />
+          </div>
+          <div className="options-group">
+            <select name="normGroup">
+              <option>Select Norm Group</option>
+              {normGroups.map((item) => (
+                <option value={item.id} key={item.id}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
             <MultipleCheckbox getOptions={getOptions} />
           </div>
           <div className="form-button">

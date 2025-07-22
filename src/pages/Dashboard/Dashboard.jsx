@@ -8,9 +8,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-
-  const navigate = useNavigate()
-  const [data, setData] = useState({});
+  const navigate = useNavigate();
+  const [recruiter, setRecruiter] = useState("");
+  const [candidates, setCandidates] = useState([]);
 
   const headers = {
     "Content-Type": "application/json",
@@ -21,9 +21,46 @@ function Dashboard() {
       const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates", { headers, withCredentials: true });
       const data = response.data;
       console.log(data);
-      setData(data);
+      setRecruiter(data.recruiter);
+
+      const obj = {};
+
+      data.candidates.forEach((item) => {
+        if (obj[item.candidate_id]) {
+          obj[item.candidate_id].assessments.push({
+            name: item.assessment_name,
+            status: item.status,
+            progress: item.progress,
+            score: item.score,
+            send_date: item.send_date,
+            start_date: item.start_date,
+            completion_date: item.completion_date,
+          });
+        } else {
+          obj[item.candidate_id] = {
+            name: item.candidate_name,
+            last_name: item.last_name,
+            email: item.email,
+            norm_group: item.norm_group_name,
+            assessments: [
+              {
+                name: item.assessment_name,
+                status: item.status,
+                progress: item.progress,
+                score: item.score,
+                send_date: item.send_date,
+                start_date: item.start_date,
+                completion_date: item.completion_date,
+              },
+            ],
+          };
+        }
+      });
+
+      console.log(Object.entries(obj));
+      setCandidates(Object.entries(obj));
     } catch (error) {
-      navigate("/")
+      //navigate("/");
     }
   };
 
@@ -32,13 +69,18 @@ function Dashboard() {
   }, []);
   return (
     <>
-      <Header recruiter={data.recruiter}/>
+      <Header recruiter={recruiter} />
       <div className="dashboard">
         <div className="top">
-          <Filters />
-          <CreateCandidateButton />
+          <div>
+            <h1>Candidates Table</h1>
+            <Filters />
+          </div>
+          <div>
+            <CreateCandidateButton />
+          </div>
         </div>
-        <CandidatesTable candidates={data.candidates} />
+        <CandidatesTable candidates={candidates} />
       </div>
     </>
   );

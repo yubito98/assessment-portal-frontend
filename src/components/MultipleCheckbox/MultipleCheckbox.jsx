@@ -43,7 +43,7 @@ function MultipleCheckbox({ getOptions }) {
     >
       <div className="selected">
         {selectedOptions.length < 1
-          ? "Select assessment"
+          ? "Select assessments"
           : selectedOptions.map((item, index) => (
               <div key={index} className="item">
                 {item.name}

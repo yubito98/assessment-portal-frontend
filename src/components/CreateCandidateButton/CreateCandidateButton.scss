@@ -18,6 +18,14 @@
             display: flex;
             justify-content: center;
         }
+        .options-group{
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            select{
+                flex: 0 0 calc(50% - 10px);
+            }
+        }
     }
 }
 

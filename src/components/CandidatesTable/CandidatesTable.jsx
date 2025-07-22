@@ -1,4 +1,5 @@
 import "./CandidatesTable.scss";
+import { useState, useEffect } from "react";
 
 function CandidatesTable({ candidates = [] }) {
   return (
@@ -9,9 +10,10 @@ function CandidatesTable({ candidates = [] }) {
             <div className="column">Name</div>
             <div className="column">Last Name</div>
             <div className="column">Email</div>
+            <div className="column">Norm Group</div>
             <div className="column">Assessments</div>
-            <div className="column">Progress</div>
             <div className="column">Status</div>
+            <div className="column">Progress</div>
             <div className="column">Score</div>
             <div className="column">Send Date</div>
             <div className="column">Completion Date</div>
@@ -20,20 +22,24 @@ function CandidatesTable({ candidates = [] }) {
         <div className="body">
           {candidates.length < 1
             ? "There are no candidates"
-            : candidates.map((item, index) => (
-                <div key={index} className="row">
-                  <div className="column">{item.name}</div>
-                  <div className="column">{item.last_name}</div>
-                  <div className="column"></div>
-                  <div className="column assessments">
-                    <span></span>
-                    <span></span>
+            : candidates.map(([id, data]) => (
+                <div key={id} className="row">
+                  <div className="column">{data.name}</div>
+                  <div className="column">{data.last_name}</div>
+                  <div className="column">{data.email}</div>
+                  <div className="column">{data.norm_group}</div>
+                  <div className="assessment-column column">
+                    {data.assessments.map((item, index) => (
+                      <div className="assessment-row">
+                        <div className="column">{item.name}</div>
+                        <div className="column">{item.status || "Inactive"}</div>
+                        <div className="column">{item.progress || "0%"}</div>
+                        <div className="column">{item.score || "0"}</div>
+                        <div className="column">{item.send_date ? new Date(item.send_date).toLocaleDateString() : "—"}</div>
+                        <div className="column">{item.completion_date ? new Date(item.completion_date).toLocaleDateString() : "—"}</div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="column"></div>
-                  <div className="column"></div>
-                  <div className="column"></div>
-                  <div className="column"></div>
-                  <div className="column"></div>
                 </div>
               ))}
         </div>
