@@ -1,6 +1,6 @@
-import './CandidateLogin.scss'
-import { useState} from "react";
-import axios from 'axios';
+import "./CandidateLogin.scss";
+import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function CandidateLogin() {
@@ -26,7 +26,8 @@ function CandidateLogin() {
     try {
       const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/login", formData, { headers, withCredentials: true });
       const data = response.data;
-      navigate("/dashboard");
+      navigate("/candidate/dashboard");
+      //console.log(data);
     } catch (error) {
       if (error.response.data.message === "Invalid email") {
         setError("Invalid email");
@@ -45,9 +46,7 @@ function CandidateLogin() {
         <h3>Candidate Login</h3>
         <input type="email" name="email" placeholder="email" />
         <input type="password" name="password" placeholder="password" />
-        <p>
-          Don't have an account? ask your recruiter for instructions
-        </p>
+        <p>Don't have an account? ask your recruiter for instructions</p>
         {error ? <div className="form-error">{error}</div> : ""}
         <button type="submit" className="secondary-button">
           Login

@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import SignUp from "./pages/Login/SignUp";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import CandidateLogin from "./pages/CandidateLogin/CandidateLogin";
+import CandidateDashboard from "./pages/CandidateDashboard/CandidateDashboard";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/candidate/login' element={<CandidateLogin />} />
             <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/candidate/dashboard' element={<CandidateDashboard />} />
             <Route path='*' element={<p>Not Found</p>}/>
       </Routes>
     </BrowserRouter>
