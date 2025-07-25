@@ -4,7 +4,7 @@ import CloseButton from "../CloseButton/CloseButton";
 import MultipleCheckbox from "../MultipleCheckbox/MultipleCheckbox";
 import axios from "axios";
 
-function CreateCandidateButton() {
+function CreateCandidateButton({refreshCandidates}) {
   const [modal, setModal] = useState(false);
   const [assessments, setAssessments] = useState([]);
   const [normGroups, setNormGroups] = useState([]);
@@ -36,7 +36,6 @@ function CreateCandidateButton() {
       const form = new FormData(event.target);
       const formData = Object.fromEntries(form);
       const { name, lastName, email, password, normGroup } = formData;
-      console.log({ name, lastName, email, normGroup, assessments: assessments });
       const response = await axios.post(
         "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates",
         { name, lastName, email, password, normGroup, assessments: assessments },
@@ -44,8 +43,8 @@ function CreateCandidateButton() {
           withCredentials: true,
         }
       );
-      const data = response.data;
-      console.log(data);
+      setModal(!modal);
+      refreshCandidates();
     } catch (error) {
       console.log(error);
     }

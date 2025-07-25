@@ -20,7 +20,6 @@ function Dashboard() {
     try {
       const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates", { headers, withCredentials: true });
       const data = response.data;
-      console.log(data);
       setRecruiter(data.recruiter);
 
       const obj = {};
@@ -64,6 +63,8 @@ function Dashboard() {
     }
   };
 
+
+
   useEffect(() => {
     getData();
   }, []);
@@ -77,7 +78,7 @@ function Dashboard() {
             <Filters />
           </div>
           <div>
-            <CreateCandidateButton />
+            <CreateCandidateButton refreshCandidates={getData} />
           </div>
         </div>
         <CandidatesTable candidates={candidates} />

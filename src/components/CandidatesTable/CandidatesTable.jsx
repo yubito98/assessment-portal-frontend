@@ -1,7 +1,11 @@
 import "./CandidatesTable.scss";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CandidatesTable({ candidates = [] }) {
+
+  const navigate = useNavigate()
+
   return (
     <div className="candidates-table">
       <div className="container">
@@ -23,14 +27,14 @@ function CandidatesTable({ candidates = [] }) {
           {candidates.length < 1
             ? "There are no candidates"
             : candidates.map(([id, data]) => (
-                <div key={id} className="row">
+                <div onClick={() => navigate(`/dashboard/${id}`)} key={id} className="row">
                   <div className="column">{data.name}</div>
                   <div className="column">{data.last_name}</div>
                   <div className="column">{data.email}</div>
                   <div className="column">{data.norm_group}</div>
                   <div className="assessment-column column">
                     {data.assessments.map((item, index) => (
-                      <div className="assessment-row">
+                      <div key={index} className={index === 0 ? "assessment-row first-row": "assessment-row"}>
                         <div className="column">{item.name}</div>
                         <div className="column">{item.status || "Inactive"}</div>
                         <div className="column">{item.progress || "0%"}</div>

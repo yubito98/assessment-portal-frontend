@@ -1,10 +1,11 @@
+import "./CandidateDashboard.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CandidateDashboard() {
   const [candidateName, setCandidateName] = useState("");
-  const [assessments, setAssessments] = useState([])
+  const [assessments, setAssessments] = useState([]);
   const navigate = useNavigate();
   const headers = {
     "Content-Type": "application/json",
@@ -13,6 +14,8 @@ function CandidateDashboard() {
     try {
       const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments", { headers, withCredentials: true });
       console.log(response.data);
+      setCandidateName(response.data.name);
+      setAssessments(response.data.assessments);
     } catch (error) {
       console.log(error);
       navigate("/candidate/login");
@@ -25,7 +28,17 @@ function CandidateDashboard() {
 
   return (
     <div className="candidate-dashboard">
-      <h1>Assessments</h1>
+      <div className="card">
+        <h1>Hi {candidateName || "Candidate"}</h1>
+        <p>These are the assessments you have to complete:</p>
+        {assessments.map((item, index) => (
+          <div id={item.assessment_id} key={item.assessment_id} className="item">
+            <span className="name">{item.name}</span>
+            <span className={`${item.status} status`}>{item.status || "Not started"}</span>
+            
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
