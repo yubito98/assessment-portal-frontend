@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import CandidateLogin from "./pages/CandidateLogin/CandidateLogin";
 import CandidateDashboard from "./pages/CandidateDashboard/CandidateDashboard";
 import CandidateDetail from "./pages/CandidateDetail/CandidateDetail";
+import CandidateQuestionnaire from "./pages/CandidateQuestionnaire/CandidateQuestionnaire";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/dashboard/:id' element={<CandidateDetail />} />
             <Route path='/candidate/dashboard' element={<CandidateDashboard />} />
+            <Route path='/candidate/dashboard/:id' element={<CandidateQuestionnaire />} />
             <Route path='*' element={<p>Not Found</p>}/>
       </Routes>
     </BrowserRouter>

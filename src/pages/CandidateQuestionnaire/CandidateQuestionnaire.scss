@@ -1,0 +1,21 @@
+@use "../../variables.scss" as vars;
+
+.candidate-questionnaire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  .candidate-bar {
+    padding: 15px;
+    border-radius: 12px;
+    background-color: white;
+    border: 1px solid vars.$color-1;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    box-shadow: -3px 3px 10px 2px rgba(0, 0, 0, 0.3);
+  }
+}

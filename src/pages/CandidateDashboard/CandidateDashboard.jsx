@@ -32,7 +32,7 @@ function CandidateDashboard() {
         <h1>Hi {candidateName || "Candidate"}</h1>
         <p>These are the assessments you have to complete:</p>
         {assessments.map((item, index) => (
-          <div id={item.assessment_id} key={item.assessment_id} className="item">
+          <div onClick={() => navigate(`/candidate/dashboard/${item.id}`)} id={item.id} key={item.id} className="item">
             <span className="name">{item.name}</span>
             <span className={`${item.status} status`}>{item.status || "Not started"}</span>
             
