@@ -1,5 +1,6 @@
 import "./CandidateQuestionnaire.scss";
 import Questionnaire from "../../components/Questionnaire/Questionnaire";
+import Timer from "../../components/Timer/Timer";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -51,7 +52,7 @@ function CandidateQuestionnaire() {
       <div className="candidate-bar">
         <div>{candidate}</div>
         <div><strong>{candidateAssessment.name}</strong> {totalResponses} out of {totalQuestions} questions</div>
-        <div>0:00</div>
+        <Timer/>
       </div>
       <Questionnaire question={question} />
     </div>
