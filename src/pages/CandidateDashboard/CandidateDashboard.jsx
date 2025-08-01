@@ -22,6 +22,19 @@ function CandidateDashboard() {
     }
   };
 
+  const takeAssessment = async (event) => {
+    try {
+      if (event.currentTarget.classList.contains("Progress")) {
+        navigate(`/candidate/dashboard/${event.currentTarget.id}`);
+      } else {
+        const response = axios.patch(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/${event.currentTarget.id}`, { status: "In Progress" }, { headers, withCredentials: true });
+        navigate(`/candidate/dashboard/${event.currentTarget.id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCandidateAssessments();
   }, []);
@@ -31,11 +44,10 @@ function CandidateDashboard() {
       <div className="card">
         <h1>Hi {candidateName || "Candidate"}</h1>
         <p>These are the assessments you have to complete:</p>
-        {assessments.map((item, index) => (
-          <div onClick={() => navigate(`/candidate/dashboard/${item.id}`)} id={item.id} key={item.id} className="item">
+        {assessments.map((item) => (
+          <div onClick={takeAssessment} id={item.id} key={item.id} className={`${item.status} item`}>
             <span className="name">{item.name}</span>
             <span className={`${item.status} status`}>{item.status || "Not started"}</span>
-            
           </div>
         ))}
       </div>

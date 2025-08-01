@@ -18,6 +18,7 @@ function CandidatesTable({ candidates = [] }) {
             <div className="column">Assessments</div>
             <div className="column">Status</div>
             <div className="column">Progress</div>
+            <div className="column">Time Spent</div>
             <div className="column">Score</div>
             <div className="column">Send Date</div>
             <div className="column">Completion Date</div>
@@ -37,7 +38,8 @@ function CandidatesTable({ candidates = [] }) {
                       <div key={index} className={index === 0 ? "assessment-row first-row": "assessment-row"}>
                         <div className="column">{item.name}</div>
                         <div className="column">{item.status || "Inactive"}</div>
-                        <div className="column">{item.progress || "0%"}</div>
+                        <div className="column">{item.progress ? item.progress + "%" : "0%"}</div>
+                        <div className="column">{item.time_spent ? item.time_spent + "s" : "0s"}</div>
                         <div className="column">{item.score || "0"}</div>
                         <div className="column">{item.send_date ? new Date(item.send_date).toLocaleDateString() : "—"}</div>
                         <div className="column">{item.completion_date ? new Date(item.completion_date).toLocaleDateString() : "—"}</div>

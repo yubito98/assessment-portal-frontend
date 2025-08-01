@@ -1,19 +1,27 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import "./Timer.scss";
 
-function Timer() {
+function Timer({timeSpent}) {
   const headers = {
     "Content-Type": "application/json",
   };
 
-  const [seconds, setSeconds] = useState(0);
+  const [seconds, setSeconds] = useState(timeSpent);
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const stopAssessment = () => {
-    // send time to candidateAssessment
-    navigate("/candidate/dashboard");
+
+  const stopAssessment = async () => {
+    try {
+      const response = await axios.patch(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/time?candidateAssessmentId=${id}`, { time: seconds }, { headers, withCredentials: true });
+      const data = response.data;
+      console.log(data);
+      navigate("/candidate/dashboard");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

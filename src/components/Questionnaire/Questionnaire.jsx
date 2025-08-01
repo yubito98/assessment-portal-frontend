@@ -1,10 +1,18 @@
 import "./Questionnaire.scss";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 import { useState, useRef } from "react";
 
-function Questionnaire({ question = "" }) {
+function Questionnaire({ question, assessmentId, getQuestion }) {
+  const { id } = useParams();
+
   const [error, setError] = useState("");
   const formRef = useRef(null);
+
+  const headers = {
+    "Content-Type": "application/json",
+  };
 
   const handleSelect = (event) => {
     const checkBoxes = formRef.current.querySelectorAll("input");
@@ -14,14 +22,23 @@ function Questionnaire({ question = "" }) {
     event.target.checked = true;
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const form = new FormData(event.target);
-    const formData = Object.fromEntries(form);
-    const answer = Object.keys(formData);
-    if (answer.length === 0) {
-      setError("Select one option");
-    } else setError("");
+    try {
+      const form = new FormData(event.target);
+      const formData = Object.fromEntries(form);
+      const answer = Object.keys(formData);
+      if (answer.length === 0) {
+        setError("Select one option");
+        return;
+      } else setError("");
+      const response = await axios.post(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/responses?candidateAssessmentId=${id}&questionId=${question.id}&assessmentId=${assessmentId}`, { answer: answer[0] }, { headers, withCredentials: true });
+      const data = response.data;
+      getQuestion(assessmentId);
+      event.target.reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="questionnaire">
