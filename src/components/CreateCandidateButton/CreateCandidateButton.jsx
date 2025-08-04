@@ -4,7 +4,7 @@ import CloseButton from "../CloseButton/CloseButton";
 import MultipleCheckbox from "../MultipleCheckbox/MultipleCheckbox";
 import axios from "axios";
 
-function CreateCandidateButton({refreshCandidates}) {
+function CreateCandidateButton({ refreshCandidates }) {
   const [modal, setModal] = useState(false);
   const [assessments, setAssessments] = useState([]);
   const [normGroups, setNormGroups] = useState([]);
@@ -35,10 +35,10 @@ function CreateCandidateButton({refreshCandidates}) {
     try {
       const form = new FormData(event.target);
       const formData = Object.fromEntries(form);
-      const { name, lastName, email, password, normGroup } = formData;
+      const { name, lastName, email, password, isNorm, normGroup } = formData;
       const response = await axios.post(
         "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates",
-        { name, lastName, email, password, normGroup, assessments: assessments },
+        { name, lastName, email, password, isNorm, normGroup, assessments: assessments },
         {
           withCredentials: true,
         }
@@ -86,6 +86,11 @@ function CreateCandidateButton({refreshCandidates}) {
             <input type="password" name="password" placeholder="password" />
           </div>
           <div className="options-group">
+            <select name="isNorm">
+              <option>Is Norm?</option>
+              <option value={true}>True</option>
+              <option value={false}>False</option>
+            </select>
             <select name="normGroup">
               <option>Select Norm Group</option>
               {normGroups.map((item) => (
@@ -94,6 +99,8 @@ function CreateCandidateButton({refreshCandidates}) {
                 </option>
               ))}
             </select>
+          </div>
+          <div>
             <MultipleCheckbox getOptions={getOptions} />
           </div>
           <div className="form-button">

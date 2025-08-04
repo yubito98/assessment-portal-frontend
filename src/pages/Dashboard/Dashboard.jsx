@@ -41,6 +41,7 @@ function Dashboard() {
             name: item.candidate_name,
             last_name: item.last_name,
             email: item.email,
+            is_norm: item.is_norm,
             norm_group: item.norm_group_name,
             assessments: [
               {

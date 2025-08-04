@@ -1,7 +1,6 @@
 import "./Questionnaire.scss";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
 import { useState, useRef } from "react";
 
 function Questionnaire({ question, assessmentId, getQuestion }) {

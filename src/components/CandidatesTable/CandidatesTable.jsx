@@ -1,10 +1,10 @@
 import "./CandidatesTable.scss";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ProgressBar from "../ProgressBar/ProgressBar.jsx";
 
 function CandidatesTable({ candidates = [] }) {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className="candidates-table">
@@ -14,8 +14,9 @@ function CandidatesTable({ candidates = [] }) {
             <div className="column">Name</div>
             <div className="column">Last Name</div>
             <div className="column">Email</div>
+            <div className="column">Is Norm?</div>
             <div className="column">Norm Group</div>
-            <div className="column">Assessments</div>
+            <div className="column">Assessment</div>
             <div className="column">Status</div>
             <div className="column">Progress</div>
             <div className="column">Time Spent</div>
@@ -32,13 +33,16 @@ function CandidatesTable({ candidates = [] }) {
                   <div className="column">{data.name}</div>
                   <div className="column">{data.last_name}</div>
                   <div className="column">{data.email}</div>
+                  <div className="column">{data.is_norm === true ? "True" : "False"}</div>
                   <div className="column">{data.norm_group}</div>
                   <div className="assessment-column column">
                     {data.assessments.map((item, index) => (
-                      <div key={index} className={index === 0 ? "assessment-row first-row": "assessment-row"}>
+                      <div key={index} className="assessment-row">
                         <div className="column">{item.name}</div>
                         <div className="column">{item.status || "Inactive"}</div>
-                        <div className="column">{item.progress ? item.progress + "%" : "0%"}</div>
+                        <div className="column">
+                          <ProgressBar progress={item.progress} />
+                        </div>
                         <div className="column">{item.time_spent ? item.time_spent + "s" : "0s"}</div>
                         <div className="column">{item.score || "0"}</div>
                         <div className="column">{item.send_date ? new Date(item.send_date).toLocaleDateString() : "—"}</div>
