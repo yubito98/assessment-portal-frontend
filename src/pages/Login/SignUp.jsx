@@ -45,6 +45,8 @@ function SignUp() {
           <h3>Sign up</h3>
           <input type="text" name="name" placeholder="Name" />
           <input type="email" name="email" placeholder="Email" />
+          <input type="text" name="company" placeholder="Company name" />
+          <input type="text" name="normGroup" placeholder="Roles" />
           <input type="password" name="password" placeholder="Password" />
           <p>
             Do you already have an account? Log in{" "}
