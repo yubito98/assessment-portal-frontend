@@ -1,0 +1,31 @@
+.groups-table{
+    .container{
+        width: 100%;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: -5px 5px 15px 2px rgba(136, 136, 136, 0.3);
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .column{
+                width: 200px;
+                padding: 10px;
+            }
+        }
+        .body{
+            .column{
+                width: 200px;
+                padding: 10px;
+            }
+            .row{
+                            display: flex;
+            align-items: center;
+            justify-content: space-between;
+                &:hover{
+                    background-color: unset;
+                }
+            }
+        }
+    }
+}

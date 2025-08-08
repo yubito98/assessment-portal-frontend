@@ -14,13 +14,15 @@ function CandidatesTable({ candidates = [] }) {
             <div className="column">Name</div>
             <div className="column">Last Name</div>
             <div className="column">Email</div>
-            <div className="column">Is Norm?</div>
-            <div className="column">Norm Group</div>
             <div className="column">Assessment</div>
             <div className="column">Status</div>
             <div className="column">Progress</div>
-            <div className="column">Time Spent</div>
+            <div className="column">Is Norm?</div>
+            <div className="column">Norm Group</div>
+            <div className="column">Score Average</div>
+            <div className="column">Standard Deviation</div>
             <div className="column">Score</div>
+            <div className="column">Time Spent</div>
             <div className="column">Send Date</div>
             <div className="column">Completion Date</div>
           </div>
@@ -33,8 +35,6 @@ function CandidatesTable({ candidates = [] }) {
                   <div className="column">{data.name}</div>
                   <div className="column">{data.last_name}</div>
                   <div className="column">{data.email}</div>
-                  <div className="column">{data.is_norm === true ? "True" : "False"}</div>
-                  <div className="column">{data.norm_group}</div>
                   <div className="assessment-column column">
                     {data.assessments.map((item, index) => (
                       <div key={index} className="assessment-row">
@@ -43,8 +43,12 @@ function CandidatesTable({ candidates = [] }) {
                         <div className="column">
                           <ProgressBar progress={item.progress} />
                         </div>
+                        <div className="column">{item.is_norm === true ? "True" : "False"}</div>
+                        <div className="column">{item.norm_group}</div>
+                        <div className="column">{item.score_average || "-"}</div>
+                        <div className="column">{item.standard_deviation || "-"}</div>
+                        <div className="column">{item.score || "-"}</div>
                         <div className="column">{item.time_spent ? item.time_spent + "s" : "0s"}</div>
-                        <div className="column">{item.score || "0"}</div>
                         <div className="column">{item.send_date ? new Date(item.send_date).toLocaleDateString() : "—"}</div>
                         <div className="column">{item.completion_date ? new Date(item.completion_date).toLocaleDateString() : "—"}</div>
                       </div>

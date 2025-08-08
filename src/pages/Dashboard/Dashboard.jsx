@@ -3,6 +3,7 @@ import CandidatesTable from "../../components/CandidatesTable/CandidatesTable";
 import CreateCandidateButton from "../../components/CreateCandidateButton/CreateCandidateButton";
 import Header from "../../components/Header/Header";
 import Filters from "../../components/Filters/Filters";
+import NormGroupsTable from "../../components/NormGroupsTable/NormGroupsTable";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -31,6 +32,10 @@ function Dashboard() {
             status: item.status,
             progress: item.progress,
             time_spent: item.time_spent,
+            is_norm: item.is_norm,
+            norm_group: item.norm_group_name,
+            score_average: item.score_average,
+            standard_deviation: item.standard_deviation,
             score: item.score,
             send_date: item.send_date,
             start_date: item.start_date,
@@ -41,14 +46,16 @@ function Dashboard() {
             name: item.candidate_name,
             last_name: item.last_name,
             email: item.email,
-            is_norm: item.is_norm,
-            norm_group: item.norm_group_name,
             assessments: [
               {
                 name: item.assessment_name,
                 status: item.status,
                 progress: item.progress,
                 time_spent: item.time_spent,
+                is_norm: item.is_norm,
+                norm_group: item.norm_group_name,
+                score_average: item.score_average,
+                standard_deviation: item.standard_deviation,
                 score: item.score,
                 send_date: item.send_date,
                 start_date: item.start_date,
@@ -66,8 +73,6 @@ function Dashboard() {
     }
   };
 
-
-
   useEffect(() => {
     getData();
   }, []);
@@ -84,7 +89,10 @@ function Dashboard() {
             <CreateCandidateButton refreshCandidates={getData} />
           </div>
         </div>
-        <CandidatesTable candidates={candidates} />
+        <div className="main">
+          <CandidatesTable candidates={candidates} />
+          <NormGroupsTable />
+        </div>
       </div>
     </>
   );
