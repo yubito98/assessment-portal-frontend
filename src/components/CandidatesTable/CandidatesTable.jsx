@@ -19,9 +19,6 @@ function CandidatesTable({ candidates = [] }) {
             <div className="column">Progress</div>
             <div className="column">Is Norm?</div>
             <div className="column">Norm Group</div>
-            <div className="column">Score Average</div>
-            <div className="column">Standard Deviation</div>
-            <div className="column">Score</div>
             <div className="column">Time Spent</div>
             <div className="column">Send Date</div>
             <div className="column">Completion Date</div>
@@ -45,9 +42,6 @@ function CandidatesTable({ candidates = [] }) {
                         </div>
                         <div className="column">{item.is_norm === true ? "True" : "False"}</div>
                         <div className="column">{item.norm_group}</div>
-                        <div className="column">{item.score_average || "-"}</div>
-                        <div className="column">{item.standard_deviation || "-"}</div>
-                        <div className="column">{item.score || "-"}</div>
                         <div className="column">{item.time_spent ? item.time_spent + "s" : "0s"}</div>
                         <div className="column">{item.send_date ? new Date(item.send_date).toLocaleDateString() : "—"}</div>
                         <div className="column">{item.completion_date ? new Date(item.completion_date).toLocaleDateString() : "—"}</div>
