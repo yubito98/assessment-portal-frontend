@@ -3,7 +3,6 @@ import CandidatesTable from "../../components/CandidatesTable/CandidatesTable";
 import CreateCandidateButton from "../../components/CreateCandidateButton/CreateCandidateButton";
 import Header from "../../components/Header/Header";
 import Filters from "../../components/Filters/Filters";
-import NormGroupsTable from "../../components/NormGroupsTable/NormGroupsTable";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -85,7 +84,6 @@ function Dashboard() {
         </div>
         <div className="main">
           <CandidatesTable candidates={candidates} />
-          <NormGroupsTable />
         </div>
       </div>
     </>

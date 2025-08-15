@@ -5,8 +5,9 @@ import axios from "axios";
 import Header from "../../components/Header/Header";
 
 function CandidateDetail() {
-const [recruiter, setRecruiter] = useState("");
+  const [recruiter, setRecruiter] = useState("");
   const [candidate, setCandidate] = useState({});
+  const [attributes, setAttributes] = useState([]);
   const headers = {
     "Content-Type": "application/json",
   };
@@ -17,8 +18,9 @@ const [recruiter, setRecruiter] = useState("");
     try {
       const response = await axios.get(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates/${id}`, { headers, withCredentials: true });
       console.log(response.data);
-      setRecruiter(response.data.recruiter)
-      setCandidate(response.data.candidate[0]);
+      setRecruiter(response.data.recruiter);
+      setCandidate(response.data.candidate);
+      setAttributes(response.data.attributes);
     } catch (error) {
       console.log(error);
     }
@@ -31,9 +33,38 @@ const [recruiter, setRecruiter] = useState("");
     <>
       <Header recruiter={recruiter} />
       <div className="candidate-detail">
-        <h1>Candidate detail</h1>
-        <li><strong>Name:</strong> {candidate.candidate_name}</li>
-        <li><strong>Email:</strong> {candidate.email}</li>
+        <div className="group-detail">
+          <h1>Candidate Info</h1>
+          <li>
+            <strong>Name:</strong> {candidate.candidate_name}
+          </li>
+          <li>
+            <strong>Email:</strong> {candidate.email}
+          </li>
+        </div>
+        <div className="group-detail">
+          <h1>Assessment Info</h1>
+          <li>
+            <strong>Name:</strong> {candidate.assessment_name}
+          </li>
+          <li>
+            <strong>Role:</strong> {candidate.norm_group_name}
+          </li>
+          <li>
+            <strong>Status:</strong> {candidate.status}
+          </li>
+          <li>
+            <strong>Progress:</strong> {candidate.progress}%
+          </li>
+        </div>
+        <div className="group-detail">
+          <h1>Scores</h1>
+          {attributes.map(item => (
+          <li>
+            <strong>{item.name}:</strong> {item.t_score}
+          </li>
+          ))}
+        </div>
       </div>
     </>
   );
