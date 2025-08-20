@@ -22,6 +22,8 @@ function Dashboard() {
       const data = response.data;
       setRecruiter(data.recruiter);
 
+      console.log(data.candidates)
+
       const obj = {};
 
       data.candidates.forEach((item) => {

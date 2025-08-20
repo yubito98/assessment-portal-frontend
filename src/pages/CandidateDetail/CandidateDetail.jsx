@@ -26,6 +26,26 @@ function CandidateDetail() {
     }
   };
 
+  const calculateTscore = async () => {
+    try {
+      const response = await axios.post(
+        `https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/attributes`,
+        {
+          candidate_id: id,
+          assessment_id: candidate.assessment_id,
+          candidate_assessment_id: candidate.candidate_assessment_id,
+          norm_group_id: candidate.norm_group_id,
+          is_norm: candidate.is_norm,
+        },
+        { headers, withCredentials: true }
+      );
+      console.log(response.data);
+      getCandidateDetail();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getCandidateDetail();
   }, []);
@@ -59,12 +79,13 @@ function CandidateDetail() {
         </div>
         <div className="group-detail">
           <h1>Scores</h1>
-          {attributes.map(item => (
-          <li>
-            <strong>{item.name}:</strong> {item.t_score}
-          </li>
+          {attributes.map((item) => (
+            <li>
+              <strong>{item.name}:</strong> {item.t_score}
+            </li>
           ))}
         </div>
+        <button onClick={calculateTscore}>Calculate TScore</button>
       </div>
     </>
   );
