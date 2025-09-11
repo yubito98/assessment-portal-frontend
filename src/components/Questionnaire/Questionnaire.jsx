@@ -31,7 +31,7 @@ function Questionnaire({ question, assessmentId, getQuestion }) {
         setError("Select one option");
         return;
       } else setError("");
-      const response = await axios.post(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/responses?candidateAssessmentId=${id}&questionId=${question.id}&assessmentId=${assessmentId}`, { answer: answer[0] }, { headers, withCredentials: true });
+      const response = await axios.post(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/responses?candidateAssessmentId=${id}&questionId=${question.id}&assessmentId=${assessmentId}&questionName=${question.question}`, { answer: answer[0] }, { headers, withCredentials: true });
       const data = response.data;
       getQuestion(assessmentId);
       event.target.reset();
