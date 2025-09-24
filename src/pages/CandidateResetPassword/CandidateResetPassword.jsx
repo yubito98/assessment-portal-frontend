@@ -1,9 +1,9 @@
-import "./CandidateLogin.scss";
+import "./CandidateResetPassword.scss";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function CandidateLogin() {
+function CandidateResetPassword() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const headers = {
@@ -14,24 +14,21 @@ function CandidateLogin() {
     event.preventDefault();
     const form = new FormData(event.target);
     const formData = Object.fromEntries(form);
-    if (!formData.email) {
-      setError("Email is required");
-      return;
-    }
-    if (!formData.password) {
+
+    if (!formData.password || !formData.password2) {
       setError("password is required");
       return;
     }
 
+    if (formData.password !== formData.password2) {
+      setError("passwords need to match");
+      return;
+    }
+
     try {
-      const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/login", formData, { headers, withCredentials: true });
+      const response = await axios.patch("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/users/update-password", formData, { headers, withCredentials: true });
       const data = response.data;
-      console.log(data)
-      if(data.first_session){
-        navigate("/candidate/reset-password");
-      }else{
-        navigate("/candidate/dashboard");
-      }
+      navigate("/candidate/dashboard");
     } catch (error) {
       if (error.response.data.message === "Invalid email") {
         setError("Invalid email");
@@ -47,17 +44,17 @@ function CandidateLogin() {
   return (
     <div className="candidate-login">
       <form onSubmit={handleSubmit}>
-        <h3>Candidate Login</h3>
-        <input type="email" name="email" placeholder="email" />
-        <input type="password" name="password" placeholder="password" />
+        <h3>This is your first login, so you’ll need to create your own password.</h3>
+        <input type="password" name="password" placeholder="New password" />
+        <input type="password" name="password2" placeholder="Repeat new password" />
         <p>Don't have an account? ask your recruiter for instructions</p>
         {error ? <div className="form-error">{error}</div> : ""}
         <button type="submit" className="secondary-button">
-          Login
+          Create Password
         </button>
       </form>
     </div>
   );
 }
 
-export default CandidateLogin;
+export default CandidateResetPassword;

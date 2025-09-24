@@ -7,6 +7,7 @@ import CandidateLogin from "./pages/CandidateLogin/CandidateLogin";
 import CandidateDashboard from "./pages/CandidateDashboard/CandidateDashboard";
 import CandidateDetail from "./pages/CandidateDetail/CandidateDetail";
 import CandidateQuestionnaire from "./pages/CandidateQuestionnaire/CandidateQuestionnaire";
+import CandidateResetPassword from "./pages/CandidateResetPassword/CandidateResetPassword";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Route path='/' element={<Login />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/candidate/login' element={<CandidateLogin />} />
+            <Route path='/candidate/reset-password' element={<CandidateResetPassword />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='/dashboard/:id' element={<CandidateDetail />} />
             <Route path='/candidate/dashboard' element={<CandidateDashboard />} />
