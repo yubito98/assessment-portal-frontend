@@ -44,7 +44,7 @@ function Timer({ timeSpent }) {
   
   return (
     <div className="timer">
-      <div>
+      <div className="value">
         <span>
           <strong>Time Spent: </strong>
         </span>
@@ -53,7 +53,7 @@ function Timer({ timeSpent }) {
         </span>
       </div>
       <button onClick={stopAssessment} className="secondary-button">
-        Stop
+        Stop Assessment
       </button>
     </div>
   );

@@ -42,7 +42,6 @@ function Questionnaire({ question, assessmentId, getQuestion }) {
   return (
     <div className="questionnaire">
       <form ref={formRef} onSubmit={handleSubmit}>
-        <span>{question.id}</span>
         <h1>{question.question}</h1>
         <p>Choose your answer below:</p>
         <div className="options">
@@ -76,7 +75,7 @@ function Questionnaire({ question, assessmentId, getQuestion }) {
           </div>
         </div>
         <span className="form-error">{error}</span>
-        <div className="button">
+        <div className="form-button">
           <button className="secondary-button" type="submit">
             Next
           </button>
