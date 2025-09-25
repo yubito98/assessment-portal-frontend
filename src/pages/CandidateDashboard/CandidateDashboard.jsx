@@ -36,6 +36,8 @@ function CandidateDashboard() {
     }
   };
 
+  const normGroup = "New Edge Growth Team"
+
   useEffect(() => {
     getCandidateAssessments();
   }, []);
@@ -56,17 +58,17 @@ function CandidateDashboard() {
         </svg></span>
       </div>
       <div className={instructions ? "instructions-active":"instructions"}>
-        <h2>Welcome to the Q-Assessment for &lt;Cardinal Group&gt;</h2>
+        <h2>Welcome to the Q-Assessment for {normGroup}</h2>
 
         <div class="section">
           <p>
-            The Q-Assessment is designed to uncover how you naturally work, think, and collaborate. It helps &lt;Cardinal Group&gt; understand your strengths and how you can thrive in your role. These insights also support your development by giving you tools to grow your career, strengthen your
+            The Q-Assessment is designed to uncover how you naturally work, think, and collaborate. It helps {normGroup} understand your strengths and how you can thrive in your role. These insights also support your development by giving you tools to grow your career, strengthen your
             impact, and prepare for future opportunities.
           </p>
           <p>
             The assessment takes about <strong>30–40 minutes</strong>. You don’t need to finish in one sitting. Your progress saves automatically, and you can return at any time to pick up where you left off. Please keep your username and password, as you’ll need them if you restart.
           </p>
-          <p>Once you’re finished, &lt;Cardinal Group&gt; will be notified.</p>
+          <p>Once you’re finished, {normGroup} will be notified.</p>
           <p>If you run into any technical hiccups, please reach out to &lt;Company Recruiter Email&gt;.</p>
         </div>
 
