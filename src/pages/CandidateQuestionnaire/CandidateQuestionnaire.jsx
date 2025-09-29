@@ -55,8 +55,8 @@ function CandidateQuestionnaire() {
   if (testCompleted) {
     return (
       <div className="assessment-completed">
-        <h1>Congratulations! You have completed your assesstment</h1>
-        <button className="secondary-button" onClick={() => navigate("/candidate/dashboard")}>Go to Dashboard</button>
+        <h1>Congratulations! You have completed your assessment</h1>
+        <p>A confirmation email will be sent to you. You may now close this tab.</p>
       </div>
     );
   }

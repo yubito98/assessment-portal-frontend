@@ -24,16 +24,7 @@ function CandidateDashboard() {
   };
 
   const takeAssessment = async (event) => {
-    try {
-      if (event.currentTarget.classList.contains("Progress")) {
-        navigate(`/candidate/dashboard/${event.currentTarget.id}`);
-      } else {
-        const response = axios.patch(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/${event.currentTarget.id}`, { status: "In Progress" }, { headers, withCredentials: true });
-        navigate(`/candidate/dashboard/${event.currentTarget.id}`);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    navigate(`/candidate/dashboard/${event.currentTarget.id}`);
   };
 
   const normGroup = "New Edge Growth Team"
