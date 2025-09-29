@@ -32,7 +32,7 @@ function CandidatesTable({ candidates = [] }) {
                   <div className="column">{data.name}</div>
                   <div className="column">{data.last_name}</div>
                   <div className="column">{data.email}</div>
-                  <div className="assessment-column column">
+                  <div className="assessment-column">
                     {data.assessments.map((item, index) => (
                       <div key={index} className="assessment-row">
                         <div className="column">{item.name}</div>

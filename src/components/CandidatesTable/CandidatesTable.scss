@@ -8,11 +8,14 @@
   box-shadow: -5px 5px 15px 2px rgba(136, 136, 136, 0.3);
   .container {
     overflow: hidden;
-    width: 3000px;
+    width: 2500px;
   }
-  .column {
-    padding: 5px 10px;
+  .column{
+    padding: 5px 15px;
     min-width: 200px;
+    max-width: 200px;
+    font-size:15px;
+    overflow: hidden;
     display: inline-block;
   }
 
@@ -22,6 +25,8 @@
   }
 }
 .body {
+  height: 400px;
+  overflow-y: scroll;
   .row {
     border-top: 3px solid vars.$default-color-1;
     display: flex;
@@ -37,12 +42,9 @@
 
 
 .assessment-column{
-  width: 2500px !important;
+  width: 2000px !important;
   padding: 0px !important;
   .first-row{
     border-bottom: 1px solid vars.$color-1;
-  }
-  .column{
-    padding: 5px 10px;
   }
 }
