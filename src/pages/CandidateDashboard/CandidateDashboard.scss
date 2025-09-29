@@ -26,6 +26,20 @@
         font-weight: 700;
         font-size: 18px;
       }
+      .status {
+        padding: 4px;
+        background-color: vars.$color-2;
+        border-radius: 12px;
+        font-size: 13px;
+        color: white;
+        font-weight: 700;
+      }
+      .Completed {
+        background-color: rgb(29 187 98);
+      }
+      .Progress {
+        background-color: rgb(36, 153, 237);
+      }
       &:hover {
         transform: scale(1.1);
       }
@@ -33,16 +47,16 @@
   }
 }
 
-.instructions-button{
+.instructions-button {
   color: #df5700;
   font-weight: 700;
   cursor: pointer;
 }
 
-.instructions{
+.instructions {
   display: none;
 }
 
-.instructions-active{
+.instructions-active {
   display: block;
 }
