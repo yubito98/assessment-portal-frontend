@@ -64,12 +64,14 @@ function CandidateQuestionnaire() {
   return (
     <div className="candidate-questionnaire">
       <div className="candidate-bar">
-        <div>{candidate}</div>
+        <div className="candidate-name">{candidate}</div>
         <div className="questionnaire-progress">
           <span className="assessment-name">{candidateAssessment.name}</span>
           <ProgressBar progress={(totalResponses / totalQuestions) * 100} />
         </div>
-        <Timer timeSpent={candidateAssessment.time_spent ?? 0} />
+        <div className="stop-button">
+          <Timer timeSpent={candidateAssessment.time_spent ?? 0} />
+        </div>
       </div>
       <Questionnaire assessmentId={candidateAssessment.assessment_id} question={question} getQuestion={getQuestion} />
     </div>

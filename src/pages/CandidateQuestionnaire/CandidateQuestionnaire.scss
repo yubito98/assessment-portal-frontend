@@ -18,21 +18,27 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: -3px 3px 10px 2px rgba(0, 0, 0, 0.3);
-    .questionnaire-progress{
+    .candidate-name {
+      width: 20%;
+    }
+    .questionnaire-progress {
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-width: 200px;
+      width: 70%;
       justify-content: center;
-      gap:5px;
-      .assessment-name{
-      font-weight: 700;
+      gap: 5px;
+      .assessment-name {
+        font-weight: 700;
       }
+    }
+    .stop-button {
+      width: 20%;
     }
   }
 }
 
-.assessment-completed{
+.assessment-completed {
   padding: 20px;
   max-width: 700px;
   height: 100vh;
@@ -42,4 +48,26 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .candidate-bar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:15px;
+    .candidate-name{
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+    }
+    .questionnaire-progress{
+      width: 100% !important;
+    }
+    .stop-button{
+      width: 100% !important;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
