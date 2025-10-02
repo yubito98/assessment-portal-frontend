@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import profilePlaceholder from "../../assets/images/profile-placeholder.svg";
 
-function Header({ recruiter }) {
+function Header({ name, role }) {
   const [profileToggle, setProfileToggle] = useState(false);
   const navigate = useNavigate();
 
@@ -25,8 +25,11 @@ function Header({ recruiter }) {
         }
       );
       const data = response.data;
-      console.log(data);
-      navigate("/");
+      if(role == 1){
+        navigate("/") 
+      }else{
+        navigate("/candidate/login")
+      } 
     } catch (error) {
       console.log(error);
     }
@@ -53,16 +56,16 @@ function Header({ recruiter }) {
         </div>
         <div className="nav">
           <ul className="menu">
-            <li onClick={() => navigate("/dashboard")}>Dashboard</li>
+            <li onClick={() => role == 1 ? navigate("/dashboard") :navigate("/candidate/dashboard") }>Dashboard</li>
           </ul>
           <div className={profileToggle ? "header-profile-active header-profile" : "header-profile"}>
             <div onClick={handleProfileToggle} className="header-profile-avatar">
               <img width={"30px"} height={"30px"} src={profilePlaceholder} />
-              <span className="header-profile-avatar-name">{recruiter}</span>
+              <span className="header-profile-avatar-name">{name}</span>
             </div>
             <div className="header-profile-options">
               <ul ref={headerProfile}>
-                <li>Profile</li>
+                {role == 2 ? (<li onClick={() => navigate("/candidate/reset-password") }>Reset Password</li>):""}
                 <li onClick={handleLogout}>Log Out</li>
               </ul>
             </div>

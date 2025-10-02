@@ -73,7 +73,7 @@ function Dashboard() {
   }, []);
   return (
     <>
-      <Header recruiter={recruiter} />
+      <Header role={1} name={recruiter} />
       <div className="dashboard">
         <div className="top">
           <div>
