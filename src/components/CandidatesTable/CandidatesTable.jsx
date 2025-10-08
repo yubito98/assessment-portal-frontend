@@ -36,7 +36,7 @@ function CandidatesTable({ candidates = [] }) {
                     {data.assessments.map((item, index) => (
                       <div key={index} className="assessment-row">
                         <div className="column">{item.name}</div>
-                        <div className="column"><span className={item.status + " status"}>{item.status || "Inactive"}</span></div>
+                        <div className="column"><span className={item.status + " status"}>{item.status || "Sent"}</span></div>
                         <div className="column">
                           <ProgressBar progress={item.progress} />
                         </div>
