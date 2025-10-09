@@ -21,6 +21,7 @@ function CandidatesTable({ candidates = [] }) {
             <div className="column">Norm Group</div>
             <div className="column">Time Spent</div>
             <div className="column">Send Date</div>
+            <div className="column">Start Date</div>
             <div className="column">Completion Date</div>
           </div>
         </div>
@@ -44,6 +45,7 @@ function CandidatesTable({ candidates = [] }) {
                         <div className="column">{item.norm_group}</div>
                         <div className="column">{item.time_spent ? item.time_spent + "s" : "0s"}</div>
                         <div className="column">{item.send_date ? new Date(item.send_date).toLocaleDateString() : "—"}</div>
+                        <div className="column">{item.start_date ? new Date(item.start_date).toLocaleDateString() : "—"}</div>
                         <div className="column">{item.completion_date ? new Date(item.completion_date).toLocaleDateString() : "—"}</div>
                       </div>
                     ))}
