@@ -39,7 +39,7 @@ function CandidatesTable({ candidates = [] }) {
                         <div className="column">{item.name}</div>
                         <div className="column"><span className={item.status + " status"}>{item.status || "Sent"}</span></div>
                         <div className="column">
-                          <ProgressBar progress={item.progress} />
+                          <ProgressBar displayValue={true} progress={item.progress} />
                         </div>
                         <div className="column">{item.is_norm === true ? "True" : "False"}</div>
                         <div className="column">{item.norm_group}</div>

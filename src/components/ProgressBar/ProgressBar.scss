@@ -20,16 +20,17 @@
   }
   .value {
     display: none;
-    /*
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     color: vars.$color-1;
     font-weight: 700;
-    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 14px;*/
+    font-size: 14px;
+  }
+  .value.active{
+    display: flex;
   }
 }
