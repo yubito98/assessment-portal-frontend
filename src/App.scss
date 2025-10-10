@@ -1,71 +1,99 @@
-@use './variables.scss' as vars;
-*{
+@use "./variables.scss" as vars;
+* {
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
-  background-color: #F4F5FA;
+body {
+  background-color: #f4f5fa;
   position: relative;
 }
 
-a{
+a {
   font-size: 16px;
   color: vars.$color-1;
   text-decoration: none;
 }
 
-button{
-  all:unset;
+button {
+  all: unset;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 8px;
-  transition: .3s;
+  transition: 0.3s;
   border: 1px solid;
 }
 
 // TYPOGRAPHY
 
-h1, h2, h3, h4, h5, h6, p, li, span, a, th, button,input, td, select, label, div{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li,
+span,
+a,
+th,
+button,
+input,
+td,
+select,
+label,
+div {
   font-family: "Noto Sans", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: vars.$title-color-1;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, input, select{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+input,
+select {
   margin-bottom: 15px;
 }
 
-h5{
+h5 {
   font-size: 16px;
   font-weight: 500;
 }
 
-label{
+label {
   color: vars.$title-color-1;
   font-weight: 600;
   font-size: 14px;
 }
 
-p,li{
+p,
+li {
   font-size: 16px;
   color: vars.$body-color;
 }
 
-
 // END TYPOGRAPHY
 
-
-.container-standar{
+.container-standar {
   max-width: 1300px;
   padding: 50px 20px;
   margin: auto;
 }
 
-
-.button{
+.button {
   transition: 0.3s;
   border: 0px;
   outline: unset;
@@ -75,84 +103,85 @@ p,li{
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  &:hover{
+  &:hover {
     transform: scale(1.08);
   }
 }
 
-.primary-button{
+.primary-button {
   background-color: vars.$color-1;
-  color: #273D6E;
+  color: #273d6e;
   font-weight: 600;
 }
 
-.primary-button:hover, .primary-button:focus{
-  background-color: #273D6E;;
+.primary-button:hover,
+.primary-button:focus {
+  background-color: #273d6e;
   color: vars.$color-1;
 }
 
-.secondary-button{
+.secondary-button {
   background-color: vars.$color-2;
   border-color: vars.$color-2;
   color: white;
   font-weight: 600;
 }
 
-.secondary-button:hover, .secondary-button:focus{
+.secondary-button:hover,
+.secondary-button:focus {
   background-color: transparent;
   border-color: vars.$color-2;
   color: vars.$color-2;
   font-weight: 700;
 }
 
-.simple-button{
+.simple-button {
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
 }
 
-.simple-button.delete{
+.simple-button.delete {
   color: #ff6b6b;
 }
 
-.simple-button.edit{
+.simple-button.edit {
   color: #4280f3;
 }
 
-.cancel-button{
+.cancel-button {
   background-color: vars.$color-3;
   color: white;
 }
 
-
-
-.filter-button{
+.filter-button {
   color: vars.$title-color-1;
   border: 1.5px solid vars.$subtitle-color-1;
   cursor: pointer;
   padding: 4px 8px;
-  font-size:13px;
-  border-radius:20px;
-  transition:.3s;
-  font-weight:500;
-  &:hover{
+  font-size: 13px;
+  border-radius: 20px;
+  transition: 0.3s;
+  font-weight: 500;
+  &:hover {
     background-color: white;
     transform: scale(1.08);
   }
 }
 
-.filter-button.active{
+.filter-button.active {
   background-color: black;
   color: white;
-  svg path{
+  svg path {
     fill: white;
     stroke: white;
   }
 }
 
-
-
-input,textarea{
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
   outline: none;
   border-radius: 8px;
   width: 100%;
@@ -162,15 +191,15 @@ input,textarea{
   color: vars.$title-color-1;
   height: 40px;
   padding: 10px;
-  &:focus{
-    box-shadow: 0 0 0 .25rem rgba(79, 117, 255, 0.25) ;
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(79, 117, 255, 0.25);
   }
-  &::placeholder{
+  &::placeholder {
     color: vars.$subtitle-color-1;
   }
 }
 
-select{
+select {
   outline: none;
   border-radius: 8px;
   border: 1px solid vars.$color-1;
@@ -178,17 +207,14 @@ select{
   color: vars.$title-color-1;
   height: 40px;
   padding: 10px;
-  margin-bottom:20px;
-  &:focus{
-    box-shadow: 0 0 0 .25rem rgba(79, 117, 255, 0.25) ;
+  margin-bottom: 20px;
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgba(79, 117, 255, 0.25);
   }
-  &::placeholder{
+  &::placeholder {
     color: vars.$subtitle-color-1;
   }
 }
-
-
-
 
 .date-input-1 {
   /*background-image: url('../src/assets/images/date-icon.png');*/
@@ -205,9 +231,39 @@ select{
   }
 }
 
-
-.form-error{
-  color:red;
+.form-error {
+  color: red;
   font-weight: 700;
   margin-bottom: 15px;
+}
+
+.form-group {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+  input[type="radio"] {
+    margin-bottom: 0;
+    width: 16px;
+  }
+}
+
+.modal {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    position: relative;
+    background-color: white;
+    border-radius: 12px;
+    max-width: 600px;
+    max-height: 600px;
+    padding: 20px;
+    overflow-y: auto;
+  }
 }
