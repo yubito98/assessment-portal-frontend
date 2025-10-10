@@ -47,7 +47,7 @@ function ModalInstructions({ state, onClose, getStarted }) {
               <li>Moderately Accurate</li>
               <li>Very Accurate</li>
             </ul>
-            <br>
+            <br/>
             <button className="secondary-button" onClick={getStarted}>Get Started</button>
           </div>
         </div>
