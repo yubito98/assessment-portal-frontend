@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import ModalConsent from "../../components/ModalConsent/ModalConsent";
 import ModalInstructions from "../../components/ModalInstructions/ModalInstructions";
+import ModalConfirmation from "../../components/ModalConfirmation/ModalConfirmation";
 
 function CandidateDashboard() {
   const [candidateName, setCandidateName] = useState("");
   const [assessments, setAssessments] = useState([]);
   const [consentModal, setConsentModal] = useState(false);
   const [instructionsModal, setInstructionsModal] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(false);
   const [consentAssessmentId, setConsentAssessmentId] = useState("");
   const navigate = useNavigate();
   const headers = {
@@ -45,19 +47,28 @@ function CandidateDashboard() {
       const formData = Object.fromEntries(form);
       const { consent } = formData;
       const parsedConsent = consent === "true" ? true : false;
-      setConsentModal(false);
-      setInstructionsModal(true);
-      const response = await axios.patch(
-        `https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/consent?candidateAssessmentId=${consentAssessmentId}`,
-        { consent: parsedConsent },
-        {
-          withCredentials: true,
-        }
-      );
+      if (!parsedConsent) {
+        setConfirmationModal(true);
+      } else {
+        setConsentModal(false);
+        setInstructionsModal(true);
+        const response = await axios.patch(
+          `https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/consent?candidateAssessmentId=${consentAssessmentId}`,
+          { consent: parsedConsent },
+          {
+            withCredentials: true,
+          }
+        );
+      }
     } catch (error) {
       console.log(error);
     }
   };
+
+  const exitAssessment = () =>{
+    setConfirmationModal(false)
+    setConsentModal(false)
+  }
 
   const getStarted = () => {
     console.log("Get Started", consentAssessmentId);
@@ -85,6 +96,12 @@ function CandidateDashboard() {
       </div>
       <ModalConsent state={consentModal} onClose={() => setConsentModal(false)} submitConsent={submitConsent} />
       <ModalInstructions state={instructionsModal} onClose={() => setInstructionsModal(false)} getStarted={getStarted} />
+      <ModalConfirmation 
+        state={confirmationModal}
+        onClose={() => setConfirmationModal(false)}
+        message="Do you want to exit the assessment?"
+        yesButton={exitAssessment}
+       />
     </>
   );
 }
