@@ -20,7 +20,7 @@ function CandidateDashboard() {
   };
   const getCandidateAssessments = async () => {
     try {
-      const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments", { headers, withCredentials: true });
+      const response = await axios.get("https://api.quotient-ai.com/api/candidate-assessments", { headers, withCredentials: true });
       console.log(response.data);
       setCandidateName(response.data.name);
       setAssessments(response.data.assessments);
@@ -53,7 +53,7 @@ function CandidateDashboard() {
         setConsentModal(false);
         setInstructionsModal(true);
         const response = await axios.patch(
-          `https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/consent?candidateAssessmentId=${consentAssessmentId}`,
+          `https://api.quotient-ai.com/api/candidate-assessments/consent?candidateAssessmentId=${consentAssessmentId}`,
           { consent: parsedConsent },
           {
             withCredentials: true,

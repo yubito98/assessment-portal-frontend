@@ -10,7 +10,7 @@ function MultipleCheckbox({ getOptions }) {
   const getAssessment = async () => {
     try {
       const response = await axios.get(
-        "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/assessments",
+        "https://api.quotient-ai.com/api/assessments",
         {
           withCredentials: true,
         }

@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../../components/Header/Header";
+import CandidateHero from "../../components/CandidateHero/CandidateHero";
+import CandidateOverview from "../../components/CandidateOverview/CandidateOverview";
 
 function CandidateDetail() {
   const [recruiter, setRecruiter] = useState("");
@@ -16,7 +18,7 @@ function CandidateDetail() {
 
   const getCandidateDetail = async () => {
     try {
-      const response = await axios.get(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates/${id}`, { headers, withCredentials: true });
+      const response = await axios.get(`https://api.quotient-ai.com/api/candidates/${id}`, { headers, withCredentials: true });
       console.log(response.data);
       setRecruiter(response.data.recruiter);
       setCandidate(response.data.candidate);
@@ -29,7 +31,7 @@ function CandidateDetail() {
   const calculateTscore = async () => {
     try {
       const response = await axios.post(
-        `https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/attributes`,
+        `https://api.quotient-ai.com/api/attributes`,
         {
           candidate_id: id,
           assessment_id: candidate.assessment_id,
@@ -51,32 +53,10 @@ function CandidateDetail() {
   }, []);
   return (
     <>
-      <Header recruiter={recruiter} />
-      <div className="candidate-detail">
-        <div className="group-detail">
-          <h1>Candidate Info</h1>
-          <li>
-            <strong>Name:</strong> {candidate.candidate_name}
-          </li>
-          <li>
-            <strong>Email:</strong> {candidate.email}
-          </li>
-        </div>
-        <div className="group-detail">
-          <h1>Assessment Info</h1>
-          <li>
-            <strong>Name:</strong> {candidate.assessment_name}
-          </li>
-          <li>
-            <strong>Role:</strong> {candidate.norm_group_name}
-          </li>
-          <li>
-            <strong>Status:</strong> {candidate.status}
-          </li>
-          <li>
-            <strong>Progress:</strong> {candidate.progress}%
-          </li>
-        </div>
+      <Header recruiter={recruiter} role={1} />
+      <CandidateHero candidate={candidate} />
+      <CandidateOverview/>
+      <div className="container-standar">
         <div className="group-detail">
           <h1>Scores</h1>
           {attributes.map((item) => (

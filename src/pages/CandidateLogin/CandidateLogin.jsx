@@ -24,7 +24,7 @@ function CandidateLogin() {
     }
 
     try {
-      const response = await axios.post("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/login", formData, { headers, withCredentials: true });
+      const response = await axios.post("https://api.quotient-ai.com/api/auth/login", formData, { headers, withCredentials: true });
       const data = response.data;
       console.log(data)
       if(data.first_session){

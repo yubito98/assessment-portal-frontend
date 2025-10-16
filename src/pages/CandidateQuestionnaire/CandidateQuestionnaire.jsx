@@ -22,7 +22,7 @@ function CandidateQuestionnaire() {
 
   const getCandidateAssessment = async () => {
     try {
-      const response = await axios.get(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/${id}`, { headers, withCredentials: true });
+      const response = await axios.get(`https://api.quotient-ai.com/api/candidate-assessments/${id}`, { headers, withCredentials: true });
       const data = response.data;
       setCandidate(data.name);
       setCandidateAssessment(data.assessment);
@@ -34,7 +34,7 @@ function CandidateQuestionnaire() {
 
   const getQuestion = async (assessmentId) => {
     try {
-      const response = await axios.get(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/questions?assessment_id=${assessmentId}`, { headers, withCredentials: true });
+      const response = await axios.get(`https://api.quotient-ai.com/api/questions?assessment_id=${assessmentId}`, { headers, withCredentials: true });
       const data = response.data;
       setTestCompleted(data.testCompleted);
       setQuestion(data.question);

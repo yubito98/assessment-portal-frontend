@@ -18,7 +18,7 @@ function Dashboard() {
 
   const getData = async () => {
     try {
-      const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates", { headers, withCredentials: true });
+      const response = await axios.get("https://api.quotient-ai.com/api/candidates", { headers, withCredentials: true });
       const data = response.data;
       setRecruiter(data.recruiter);
 

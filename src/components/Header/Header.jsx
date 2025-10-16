@@ -18,7 +18,7 @@ function Header({ name, role }) {
   const handleLogout = async () => {
     try {
       const response = await axios.post(
-        "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/auth/logout",
+        "https://api.quotient-ai.com/api/auth/logout",
         {},
         {
           withCredentials: true,

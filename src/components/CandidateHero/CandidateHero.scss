@@ -1,0 +1,43 @@
+@use "../../variables.scss" as vars;
+@use "../../mixins.scss" as *;
+
+.candidate-hero {
+  background-color: vars.$color-1-1;
+
+  .title{
+    color: white
+  }
+
+  .row {
+    @include flex-between;
+    gap: 20px;
+  }
+
+
+  .content{
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    .item{
+        label{
+            color: vars.$color-1-2;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px !important;
+            letter-spacing: 1px;
+        }
+        p{
+            color: white;
+            font-size: 20px;
+        }
+    }
+  }
+  .graphic{
+    .title{
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+    }
+  }
+}

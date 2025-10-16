@@ -11,7 +11,7 @@ function NormGroupsTable() {
 
   const getNormGroups = async () => {
     try {
-      const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/groups", { headers, withCredentials: true });
+      const response = await axios.get("https://api.quotient-ai.com/api/groups", { headers, withCredentials: true });
       const data = response.data;
       console.log(data);
       setGroups(data)

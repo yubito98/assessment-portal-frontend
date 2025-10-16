@@ -26,7 +26,7 @@ function CandidateResetPassword() {
     }
 
     try {
-      const response = await axios.patch("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/users/update-password", formData, { headers, withCredentials: true });
+      const response = await axios.patch("https://api.quotient-ai.com/api/users/update-password", formData, { headers, withCredentials: true });
       const data = response.data;
       navigate("/candidate/dashboard");
     } catch (error) {

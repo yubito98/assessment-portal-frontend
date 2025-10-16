@@ -1,0 +1,20 @@
+@use "../../variables.scss" as vars;
+@use "../../mixins.scss" as *;
+
+.candidate-overview{
+    .row{
+        @include flex-between;
+        gap:15px;
+    }
+    .column{
+        flex: 0 0 calc(100%/3 - 15px);
+    }
+
+    .description{
+        label{
+            color: black;
+            font-weight: 700;
+        }
+    }
+}
+

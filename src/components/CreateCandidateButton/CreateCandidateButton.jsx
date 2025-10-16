@@ -21,7 +21,7 @@ function CreateCandidateButton({ refreshCandidates }) {
 
   const getNormGroups = async () => {
     try {
-      const response = await axios.get("https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/groups", { headers, withCredentials: true });
+      const response = await axios.get("https://api.quotient-ai.com/api/groups", { headers, withCredentials: true });
       const data = response.data;
       console.log(data);
       setNormGroups(data);
@@ -37,7 +37,7 @@ function CreateCandidateButton({ refreshCandidates }) {
       const formData = Object.fromEntries(form);
       const { name, lastName, email, password, isNorm, normGroup } = formData;
       const response = await axios.post(
-        "https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidates",
+        "https://api.quotient-ai.com/api/candidates",
         { name, lastName, email, password, isNorm, normGroup, assessments: assessments },
         {
           withCredentials: true,

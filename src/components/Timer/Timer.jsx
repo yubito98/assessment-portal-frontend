@@ -17,7 +17,7 @@ function Timer({ timeSpent }) {
 
   const stopAssessment = async () => {
     try {
-      const response = await axios.patch(`https://assesstment-portal-backend-746f450dcb6b.herokuapp.com/api/candidate-assessments/time?candidateAssessmentId=${id}`, { time: globalSeconds }, { headers, withCredentials: true });
+      const response = await axios.patch(`https://api.quotient-ai.com/api/candidate-assessments/time?candidateAssessmentId=${id}`, { time: globalSeconds }, { headers, withCredentials: true });
       const data = response.data;
       console.log(data);
       navigate("/candidate/dashboard");
