@@ -36,16 +36,16 @@ function CandidateDetail() {
     console.log(event.currentTarget.id);
   };
 
-  /*const calculateTscore = async () => {
+  const calculateTscore = async () => {
     try {
       const response = await axios.post(
         `https://api.quotient-ai.com/api/attributes`,
         {
           candidate_id: id,
-          assessment_id: candidate.assessment_id,
-          candidate_assessment_id: candidate.candidate_assessment_id,
-          norm_group_id: candidate.norm_group_id,
-          is_norm: candidate.is_norm,
+          assessment_id: assessmentSelected.candidate.assessment_id,
+          candidate_assessment_id: assessmentSelected.candidate.candidate_assessment_id,
+          norm_group_id: assessmentSelected.candidate.norm_group_id,
+          is_norm: assessmentSelected.candidate.is_norm,
         },
         { headers, withCredentials: true }
       );
@@ -54,7 +54,7 @@ function CandidateDetail() {
     } catch (error) {
       console.log(error);
     }
-  };*/
+  };
 
   useEffect(() => {
     getCandidateDetail();
@@ -77,7 +77,7 @@ function CandidateDetail() {
                 </li>
               ))}
             </div>
-            <button>Calculate TScore</button>
+            <button onClick={calculateTscore}>Calculate TScore</button>
           </div>
         </>
       ) : (
