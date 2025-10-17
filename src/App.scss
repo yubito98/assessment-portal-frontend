@@ -1,6 +1,5 @@
 @use "./variables.scss" as vars;
 
-
 * {
   margin: 0;
   box-sizing: border-box;
@@ -89,8 +88,14 @@ li {
 
 // END TYPOGRAPHY
 
-.container-standar{
+.container-standar {
   max-width: 1250px;
+  padding: 50px 20px;
+  margin: auto;
+}
+
+.container-small {
+  max-width: 900px;
   padding: 50px 20px;
   margin: auto;
 }

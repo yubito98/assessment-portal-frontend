@@ -1,0 +1,62 @@
+@use "../../variables.scss" as vars;
+@use "../../mixins.scss" as *;
+
+.accordion {
+  margin-bottom: 20px;
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid vars.$color-1;
+  .item {
+    cursor: pointer;
+    @include flex-between;
+    .construct {
+      .title {
+        margin-bottom: 10px;
+        @include flex-between;
+        .name {
+          margin-bottom: 0px;
+        }
+        .average {
+          font-size: 22px;
+          font-weight: 600;
+          margin-right: 20px;
+          padding: 3px 10px;
+          border-radius: 12px;
+          background-color: vars.$color-1-2;
+          color: vars.$color-1-1;
+        }
+      }
+    }
+  }
+  .content {
+    max-height: 0;
+    transition: 0.3s;
+    overflow: hidden;
+    background-color: white;
+    .attribute {
+      @include flex-between;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid vars.$color-1-2;
+      .name {
+        font-size: 20px;
+      }
+      .score {
+        font-size: 24px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.accordion.active {
+  .item {
+    border-bottom: 1px solid vars.$color-1;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
+  .content {
+    max-height: 500px;
+  }
+}

@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "../../components/Header/Header";
 import CandidateHero from "../../components/CandidateHero/CandidateHero";
 import CandidateOverview from "../../components/CandidateOverview/CandidateOverview";
+import AccordionList from "../../components/AccordionList/AccordionList";
 
 function CandidateDetail() {
   const [candidateAssessments, setCandidateAssessments] = useState([]);
@@ -18,6 +19,7 @@ function CandidateDetail() {
   const getCandidateDetail = async () => {
     try {
       const response = await axios.get(`https://api.quotient-ai.com/api/candidates/${id}`, { headers, withCredentials: true });
+      console.log(response.data);
       if (response.data.length > 1) {
         setCandidateAssessments(response.data);
       } else {
@@ -65,6 +67,7 @@ function CandidateDetail() {
         <>
           <CandidateHero candidate={assessmentSelected.candidate} />
           <CandidateOverview />
+          <AccordionList assessmentId={assessmentSelected.candidate.assessment_id} attributes={assessmentSelected.attributes} />
           <div className="container-standar">
             <div className="group-detail">
               <h1>Scores</h1>
