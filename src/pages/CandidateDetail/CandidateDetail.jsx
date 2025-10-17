@@ -7,9 +7,8 @@ import CandidateHero from "../../components/CandidateHero/CandidateHero";
 import CandidateOverview from "../../components/CandidateOverview/CandidateOverview";
 
 function CandidateDetail() {
-  const [recruiter, setRecruiter] = useState("");
-  const [candidate, setCandidate] = useState({});
-  const [attributes, setAttributes] = useState([]);
+  const [candidateAssessments, setCandidateAssessments] = useState([]);
+  const [assessmentSelected, setAssessmentSelected] = useState();
   const headers = {
     "Content-Type": "application/json",
   };
@@ -19,16 +18,23 @@ function CandidateDetail() {
   const getCandidateDetail = async () => {
     try {
       const response = await axios.get(`https://api.quotient-ai.com/api/candidates/${id}`, { headers, withCredentials: true });
-      console.log(response.data);
-      setRecruiter(response.data.recruiter);
-      setCandidate(response.data.candidate);
-      setAttributes(response.data.attributes);
+      if (response.data.length > 1) {
+        setCandidateAssessments(response.data);
+      } else {
+        setAssessmentSelected(response.data[0]);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const calculateTscore = async () => {
+  const selectCandidateAssessment = (event) => {
+    const assessment = candidateAssessments.filter((item) => item.candidate.candidate_assessment_id === parseInt(event.currentTarget.id));
+    setAssessmentSelected(assessment[0]);
+    console.log(event.currentTarget.id);
+  };
+
+  /*const calculateTscore = async () => {
     try {
       const response = await axios.post(
         `https://api.quotient-ai.com/api/attributes`,
@@ -46,27 +52,44 @@ function CandidateDetail() {
     } catch (error) {
       console.log(error);
     }
-  };
+  };*/
 
   useEffect(() => {
     getCandidateDetail();
   }, []);
+
   return (
     <>
-      <Header recruiter={recruiter} role={1} />
-      <CandidateHero candidate={candidate} />
-      <CandidateOverview/>
-      <div className="container-standar">
-        <div className="group-detail">
-          <h1>Scores</h1>
-          {attributes.map((item) => (
-            <li>
-              <strong>{item.name}:</strong> {item.t_score}
-            </li>
-          ))}
+      <Header role={1} />
+      {assessmentSelected ? (
+        <>
+          <CandidateHero candidate={assessmentSelected.candidate} />
+          <CandidateOverview />
+          <div className="container-standar">
+            <div className="group-detail">
+              <h1>Scores</h1>
+              {assessmentSelected.attributes.map((item) => (
+                <li key={item.name}>
+                  <strong>{item.name}:</strong> {item.t_score}
+                </li>
+              ))}
+            </div>
+            <button>Calculate TScore</button>
+          </div>
+        </>
+      ) : (
+        <div className="assessments-container">
+          <div className="card">
+            <h1>Select the assessment you would like to review for this candidate</h1>
+            {candidateAssessments.map((item) => (
+              <div onClick={selectCandidateAssessment} className="candidate-assessment-option" id={item.candidate.candidate_assessment_id} key={item.candidate.candidate_assessment_id}>
+                <span className="name">{item.candidate.assessment_name}</span>
+                <span className={`${item.candidate.status} status`}>{item.candidate.status || "Sent"}</span>
+              </div>
+            ))}
+          </div>
         </div>
-        <button onClick={calculateTscore}>Calculate TScore</button>
-      </div>
+      )}
     </>
   );
 }

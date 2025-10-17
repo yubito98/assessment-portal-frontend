@@ -1,5 +1,63 @@
-.candidate-detail{
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+@use "../../variables.scss" as vars;
+
+.candidate-detail {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.assessments-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 70px);
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px;
+  .card {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1{
+        text-align: center;
+    }
+  }
+}
+
+.candidate-assessment-option {
+  min-width: 280px;
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid #003056;
+  padding: 6px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.3s;
+  .name {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .status {
+    padding: 4px;
+    background-color: vars.$color-2;
+    border-radius: 12px;
+    font-size: 13px;
+    color: white;
+    font-weight: 700;
+  }
+  .Completed {
+    background-color: rgb(29 187 98);
+  }
+  .Progress {
+    background-color: rgb(36, 153, 237);
+  }
+  &:hover {
+    transform: scale(1.1);
+  }
 }
