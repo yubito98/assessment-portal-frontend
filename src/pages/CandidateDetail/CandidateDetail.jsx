@@ -71,11 +71,13 @@ function CandidateDetail() {
           <div className="container-standar">
             <div className="group-detail">
               <h1>Scores</h1>
-              {assessmentSelected.attributes.map((item) => (
-                <li key={item.name}>
-                  <strong>{item.name}:</strong> {item.t_score}
-                </li>
-              ))}
+              {assessmentSelected.attributes
+                .sort((a, b) => a.name.localeCompare(b.name))
+                .map((item) => (
+                  <li key={item.name}>
+                    <strong>{item.name}:</strong> {item.t_score}
+                  </li>
+                ))}
             </div>
             <button onClick={calculateTscore}>Calculate TScore</button>
           </div>
