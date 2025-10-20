@@ -84,12 +84,14 @@ function CandidateDetail() {
         <div className="assessments-container">
           <div className="card">
             <h1>Select the assessment you would like to review for this candidate</h1>
-            {candidateAssessments.map((item) => (
-              <div onClick={selectCandidateAssessment} className="candidate-assessment-option" id={item.candidate.candidate_assessment_id} key={item.candidate.candidate_assessment_id}>
-                <span className="name">{item.candidate.assessment_name}</span>
-                <span className={`${item.candidate.status} status`}>{item.candidate.status || "Sent"}</span>
-              </div>
-            ))}
+            {candidateAssessments
+              .sort((a, b) => a.candidate.assessment_name.localeCompare(b.candidate.assessment_name))
+              .map((item) => (
+                <div onClick={selectCandidateAssessment} className="candidate-assessment-option" id={item.candidate.candidate_assessment_id} key={item.candidate.candidate_assessment_id}>
+                  <span className="name">{item.candidate.assessment_name}</span>
+                  <span className={`${item.candidate.status} status`}>{item.candidate.status || "Sent"}</span>
+                </div>
+              ))}
           </div>
         </div>
       )}
