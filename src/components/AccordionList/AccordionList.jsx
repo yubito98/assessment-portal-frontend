@@ -1,7 +1,8 @@
 import "./AccordionList.scss";
 import axios from "axios";
 import { useState, useEffect } from "react";
-function AccordionList({ attributes, assessmentId }) {
+
+function AccordionList({ attributes, assessmentId, openAccordions }) {
   const [constructs, setConstructs] = useState([]);
 
   const headers = {
@@ -51,7 +52,7 @@ function mergeExternalAttributes(constructs, externalAttributes) {
     <section>
       <div className="container-small">
         {constructs.map((item, index) => (
-          <div className="accordion" key={index}>
+          <div className={openAccordions ? "accordion active" : "accordion"} key={index}>
             <div onClick={handleAccordion} className="item">
               <div className="construct">
                 <div className="title">

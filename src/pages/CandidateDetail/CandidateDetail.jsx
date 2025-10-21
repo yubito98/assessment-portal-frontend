@@ -1,6 +1,8 @@
 import "./CandidateDetail.scss";
 import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 import axios from "axios";
 import Header from "../../components/Header/Header";
 import CandidateHero from "../../components/CandidateHero/CandidateHero";
@@ -10,6 +12,7 @@ import AccordionList from "../../components/AccordionList/AccordionList";
 function CandidateDetail() {
   const [candidateAssessments, setCandidateAssessments] = useState([]);
   const [assessmentSelected, setAssessmentSelected] = useState();
+  const [openAccordions, setOpenAccordions] = useState(false);
   const headers = {
     "Content-Type": "application/json",
   };
@@ -56,6 +59,54 @@ function CandidateDetail() {
     }
   };
 
+  const contentRef = useRef();
+
+  const handleDownloadPDF = () => {
+    setOpenAccordions(true);
+  };
+
+  const generatePDF = async () => {
+    const element = contentRef.current;
+
+    // 1️⃣ Capture element as canvas
+    const canvas = await html2canvas(element, { scale: 2 });
+    const imgData = canvas.toDataURL("image/png");
+
+    // 2️⃣ Create a PDF instance
+    const pdf = new jsPDF("p", "mm", "a4");
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // 3️⃣ Calculate image dimensions in PDF units
+    const imgWidth = pdfWidth;
+    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    // 4️⃣ Add first page
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    heightLeft -= pdfHeight;
+
+    // 5️⃣ Add extra pages if content overflows
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      heightLeft -= pdfHeight;
+    }
+
+    // 6️⃣ Save the PDF
+    pdf.save("page.pdf");
+    setOpenAccordions(false);
+  };
+
+  useEffect(() => {
+    if (openAccordions) {
+      generatePDF();
+    }
+  }, [openAccordions]);
+
   useEffect(() => {
     getCandidateDetail();
   }, []);
@@ -65,9 +116,11 @@ function CandidateDetail() {
       <Header role={1} />
       {assessmentSelected ? (
         <>
-          <CandidateHero candidate={assessmentSelected.candidate} />
-          <CandidateOverview />
-          <AccordionList assessmentId={assessmentSelected.candidate.assessment_id} attributes={assessmentSelected.attributes} />
+          <div ref={contentRef}>
+            <CandidateHero downloadReport={handleDownloadPDF} candidate={assessmentSelected.candidate} />
+            <CandidateOverview />
+            <AccordionList openAccordions={openAccordions} assessmentId={assessmentSelected.candidate.assessment_id} attributes={assessmentSelected.attributes} />
+            {/*}
           <div className="container-standar">
             <div className="group-detail">
               <h1>Scores</h1>
@@ -79,7 +132,13 @@ function CandidateDetail() {
                   </li>
                 ))}
             </div>
-            <button onClick={calculateTscore}>Calculate TScore</button>
+          </div>
+          */}
+          </div>
+          <div className="button-container">
+            <button className="secondary-button" onClick={calculateTscore}>
+              Re-calculate TScore
+            </button>
           </div>
         </>
       ) : (

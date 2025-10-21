@@ -1,7 +1,7 @@
 import "./CandidateHero.scss";
 import report from "../../assets/images/report.png";
 
-function CandidateHero({ candidate }) {
+function CandidateHero({ candidate, downloadReport }) {
   return (
     <section className="candidate-hero">
       <div className="container-standar container">
@@ -54,6 +54,7 @@ function CandidateHero({ candidate }) {
             <h3 className="title">ELITE PERFORMER</h3>
           </div>
         </div>
+        <button onClick={downloadReport} className="secondary-button">Download Report</button>
       </div>
     </section>
   );
