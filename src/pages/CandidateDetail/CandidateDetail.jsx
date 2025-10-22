@@ -120,20 +120,19 @@ function CandidateDetail() {
             <CandidateHero downloadReport={handleDownloadPDF} candidate={assessmentSelected.candidate} />
             <CandidateOverview />
             <AccordionList openAccordions={openAccordions} assessmentId={assessmentSelected.candidate.assessment_id} attributes={assessmentSelected.attributes} />
-            {/*}
-          <div className="container-standar">
-            <div className="group-detail">
-              <h1>Scores</h1>
-              {assessmentSelected.attributes
-                .sort((a, b) => a.name.localeCompare(b.name))
-                .map((item) => (
-                  <li key={item.name}>
-                    <strong>{item.name}:</strong> {item.t_score}
-                  </li>
-                ))}
+
+            <div className="container-standar">
+              <div className="group-detail">
+                <h1>Scores</h1>
+                {assessmentSelected.attributes
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((item) => (
+                    <li key={item.name}>
+                      <strong>{item.name}:</strong> {item.t_score}
+                    </li>
+                  ))}
+              </div>
             </div>
-          </div>
-          */}
           </div>
           <div className="button-container">
             <button className="secondary-button" onClick={calculateTscore}>
