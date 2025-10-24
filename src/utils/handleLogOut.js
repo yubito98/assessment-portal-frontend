@@ -9,10 +9,9 @@ export const handleLogout = async (roleId) => {
         withCredentials: true,
       }
     );
-    const data = response.data;
-    if (data.role == 1) {
+    if (roleId === 1) {
       window.location.href = "/"
-    } else {
+    } else if(roleId === 1) {
       window.location.href = "/candidate/login"
     }
   } catch (error) {

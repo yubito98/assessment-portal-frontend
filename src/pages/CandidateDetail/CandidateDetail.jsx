@@ -116,7 +116,8 @@ function CandidateDetail() {
 
   return (
     <>
-      <Header role={1} 
+      <Header 
+      role={1} 
       companyName={headerData.company_name} 
       name={headerData.recruiter_name}
       />
