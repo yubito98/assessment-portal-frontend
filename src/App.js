@@ -1,5 +1,5 @@
 import "./App.scss";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login/Login";
 import SignUp from "./pages/Login/SignUp";
 import Dashboard from "./pages/Dashboard/Dashboard";
@@ -8,27 +8,28 @@ import CandidateDashboard from "./pages/CandidateDashboard/CandidateDashboard";
 import CandidateDetail from "./pages/CandidateDetail/CandidateDetail";
 import CandidateQuestionnaire from "./pages/CandidateQuestionnaire/CandidateQuestionnaire";
 import CandidateResetPassword from "./pages/CandidateResetPassword/CandidateResetPassword";
-
+import { HeaderProvider } from "./global-components/HeaderContext";
 
 function App() {
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-            <Route path='/' element={<Login />} />
-            <Route path='/signup' element={<SignUp />} />
-            <Route path='/candidate/login' element={<CandidateLogin />} />
-            <Route path='/candidate/reset-password' element={<CandidateResetPassword />} />
-            <Route path='/dashboard' element={<Dashboard />} />
-            <Route path='/dashboard/:id' element={<CandidateDetail />} />
-            <Route path='/candidate/dashboard' element={<CandidateDashboard />} />
-            <Route path='/candidate/dashboard/:id' element={<CandidateQuestionnaire />} />
-            <Route path='*' element={<p>Not Found</p>}/>
-      </Routes>
-    </BrowserRouter>
-
+      <HeaderProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/candidate/login" element={<CandidateLogin />} />
+            <Route path="/candidate/reset-password" element={<CandidateResetPassword />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/:id" element={<CandidateDetail />} />
+            <Route path="/candidate/dashboard" element={<CandidateDashboard />} />
+            <Route path="/candidate/dashboard/:id" element={<CandidateQuestionnaire />} />
+            <Route path="*" element={<p>Not Found</p>} />
+          </Routes>
+        </BrowserRouter>
+      </HeaderProvider>
     </>
-  )
+  );
 }
 
 export default App;

@@ -1,13 +1,16 @@
 import "./CandidateDashboard.scss";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import ModalConsent from "../../components/ModalConsent/ModalConsent";
 import ModalInstructions from "../../components/ModalInstructions/ModalInstructions";
 import ModalConfirmation from "../../components/ModalConfirmation/ModalConfirmation";
+import { HeaderContext } from "../../global-components/HeaderContext";
+import { handleLogout } from "../../utils/handleLogOut";
 
 function CandidateDashboard() {
+  const { headerData, getHeaderData } = useContext(HeaderContext);
   const [candidateName, setCandidateName] = useState("");
   const [assessments, setAssessments] = useState([]);
   const [consentModal, setConsentModal] = useState(false);
@@ -65,23 +68,18 @@ function CandidateDashboard() {
     }
   };
 
-  const exitAssessment = () =>{
-    setConfirmationModal(false)
-    setConsentModal(false)
-  }
-
   const getStarted = () => {
-    console.log("Get Started", consentAssessmentId);
     navigate(`/candidate/dashboard/${consentAssessmentId}`);
   };
 
   useEffect(() => {
     getCandidateAssessments();
+    getHeaderData(2);
   }, []);
 
   return (
     <>
-      <Header role={2} name={candidateName} />
+      <Header role={2} name={headerData.candidate_name} companyName={headerData.company_name} />
       <div className="candidate-dashboard">
         <div className="card">
           <h1>Hi {candidateName || "Candidate"}</h1>
@@ -96,12 +94,14 @@ function CandidateDashboard() {
       </div>
       <ModalConsent state={consentModal} onClose={() => setConsentModal(false)} submitConsent={submitConsent} />
       <ModalInstructions state={instructionsModal} onClose={() => setInstructionsModal(false)} getStarted={getStarted} />
-      <ModalConfirmation 
+      <ModalConfirmation
         state={confirmationModal}
         onClose={() => setConfirmationModal(false)}
-        message="Do you want to exit the assessment?"
-        yesButton={exitAssessment}
-       />
+        message="Exiting without consent will close your session and notify your company contact by email. Do you wish to continue?"
+        yesButton={() => handleLogout(2)}
+        yesButtonText="Exit Without Consent"
+        noButtonText="Cancel"
+      />
     </>
   );
 }

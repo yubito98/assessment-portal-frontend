@@ -1,6 +1,6 @@
 import "./CandidateDetail.scss";
 import { useParams } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import axios from "axios";
@@ -8,11 +8,13 @@ import Header from "../../components/Header/Header";
 import CandidateHero from "../../components/CandidateHero/CandidateHero";
 import CandidateOverview from "../../components/CandidateOverview/CandidateOverview";
 import AccordionList from "../../components/AccordionList/AccordionList";
+import { HeaderContext } from "../../global-components/HeaderContext";
 
 function CandidateDetail() {
   const [candidateAssessments, setCandidateAssessments] = useState([]);
   const [assessmentSelected, setAssessmentSelected] = useState();
   const [openAccordions, setOpenAccordions] = useState(false);
+  const {headerData, getHeaderData} = useContext(HeaderContext)
   const headers = {
     "Content-Type": "application/json",
   };
@@ -109,11 +111,15 @@ function CandidateDetail() {
 
   useEffect(() => {
     getCandidateDetail();
+    getHeaderData(1);
   }, []);
 
   return (
     <>
-      <Header role={1} />
+      <Header role={1} 
+      companyName={headerData.company_name} 
+      name={headerData.recruiter_name}
+      />
       {assessmentSelected ? (
         <>
           <div ref={contentRef}>

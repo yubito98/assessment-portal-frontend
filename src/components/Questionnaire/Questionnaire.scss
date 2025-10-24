@@ -5,7 +5,7 @@
     border: 1px solid vars.$color-1;
     border-radius: 12px;
     box-shadow: -3px 3px 10px 2px rgba(0, 0, 0, 0.3);
-    min-width: 500px;
+    min-width: 700px;
     max-width: 700px;
     padding: 20px;
     margin: 20px;
@@ -27,12 +27,15 @@
 
     .form-button{
         display: flex;
-        justify-content: flex-end;
+        button{
+            font-size: 20px;
+        }
     }
 }
 
 @media(max-width:767px){
-.questionnaire{
-min-width: 200px;
-}
+    .questionnaire{
+        min-width: unset;
+        width: 100%;
+    }
 }

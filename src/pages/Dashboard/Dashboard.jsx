@@ -3,14 +3,18 @@ import CandidatesTable from "../../components/CandidatesTable/CandidatesTable";
 import CreateCandidateButton from "../../components/CreateCandidateButton/CreateCandidateButton";
 import Header from "../../components/Header/Header";
 import Filters from "../../components/Filters/Filters";
-import { useState, useEffect } from "react";
+import { HeaderContext } from "../../global-components/HeaderContext";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const {headerData, getHeaderData} = useContext(HeaderContext)
   const [recruiter, setRecruiter] = useState("");
   const [candidates, setCandidates] = useState([]);
+
+  console.log(headerData)
 
   const headers = {
     "Content-Type": "application/json",
@@ -70,10 +74,15 @@ function Dashboard() {
 
   useEffect(() => {
     getData();
+    getHeaderData(1);
   }, []);
   return (
     <>
-      <Header role={1} name={recruiter} />
+      <Header 
+      role={1} 
+      name={headerData.recruiter_name}
+      companyName={headerData.company_name} 
+      />
       <div className="dashboard">
         <div className="top">
           <div>

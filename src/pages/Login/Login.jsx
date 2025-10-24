@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+
   const headers = {
     "Content-Type": "application/json",
   };
@@ -22,7 +24,6 @@ function Login() {
       setError("password is required");
       return;
     }
-
     try {
       const response = await axios.post("https://api.quotient-ai.com/api/auth/login", formData, { headers, withCredentials: true });
       const data = response.data;
