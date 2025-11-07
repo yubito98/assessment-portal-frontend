@@ -73,7 +73,7 @@ function CandidateQuestionnaire() {
           <Timer timeSpent={candidateAssessment.time_spent ?? 0} />
         </div>
       </div>
-      <Questionnaire assessmentId={candidateAssessment.assessment_id} question={question} getQuestion={getQuestion} />
+      <Questionnaire assessmentId={candidateAssessment.assessment_id} normGroup={candidateAssessment.norm_group_name} question={question} getQuestion={getQuestion} />
     </div>
   );
 }

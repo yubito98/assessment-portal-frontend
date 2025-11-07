@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useState, useRef } from "react";
 
-function Questionnaire({ question, assessmentId, getQuestion }) {
+function Questionnaire({ question, assessmentId, getQuestion, normGroup }) {
   const { id } = useParams();
 
   const [error, setError] = useState("");
@@ -42,7 +42,7 @@ function Questionnaire({ question, assessmentId, getQuestion }) {
   return (
     <div className="questionnaire">
       <form ref={formRef} onSubmit={handleSubmit}>
-        <h1>{question.question}</h1>
+        <h1>{question.question.replace("salesperson", normGroup)}</h1>
         <p>Choose your answer below:</p>
         <div className="options">
           <div className="option-item">
