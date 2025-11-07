@@ -42,7 +42,7 @@ function Questionnaire({ question, assessmentId, getQuestion, normGroup }) {
   return (
     <div className="questionnaire">
       <form ref={formRef} onSubmit={handleSubmit}>
-        <h1>{question.question.replace("salesperson", normGroup)}</h1>
+        <h1>{question.question}</h1>
         <p>Choose your answer below:</p>
         <div className="options">
           <div className="option-item">
